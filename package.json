@@ -6,7 +6,9 @@
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/index.js",
-    "dev": "nodemon src/index.ts -e ts,json,handlebars,css,html"
+    "dev": "concurrently \"npm run tailwind-watch\" \"nodemon src/index.ts -e ts,json,handlebars,css,html\"",
+    "tailwind": "postcss public/styles/tailwind.css -o public/styles/style.css",
+    "tailwind-watch": "npx tailwindcss -i ./public/styles/tailwind.css -o ./public/styles/style.css --watch"
   },
   "keywords": [],
   "author": "",
@@ -19,7 +21,9 @@
   "devDependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.30",
+    "concurrently": "^8.2.2",
     "nodemon": "^3.1.0",
+    "tailwindcss": "^3.4.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
   }

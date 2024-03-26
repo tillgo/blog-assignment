@@ -9,6 +9,8 @@ const hbs = create({
     defaultLayout: "main"
 })
 
+app.use(express.static('public'));
+
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', './src/views');
