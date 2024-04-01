@@ -19,17 +19,16 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
             req.userId = decoded.id
             // @ts-ignore
             req.isAdmin = decoded.isAdmin
-
-            console.log('Authenticated user:', decoded.id)
         }
 
         return next()
     } catch (error) {
         if (error instanceof TokenExpiredError) {
             res.clearCookie('token')
+            return next()
         } else {
             console.error('Unexpected error', error)
+            return next(error)
         }
-        return next()
     }
 }

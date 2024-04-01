@@ -16,16 +16,22 @@ export type User = {
 }
 export type NewUser = Omit<User, '_id' | 'createdAt' | 'isAdmin'>
 
-const SCHEMA = new mongoose.Schema({
-    username: { type: String, required: true },
-    firstName: { type: String },
-    lastName: { type: String },
+const SCHEMA = new mongoose.Schema(
+    {
+        username: { type: String, required: true },
+        firstName: { type: String },
+        lastName: { type: String },
 
-    passwordHash: { type: String, required: true },
-    isAdmin: { type: Boolean, required: true, default: false },
+        passwordHash: { type: String, required: true },
+        isAdmin: { type: Boolean, required: true, default: false },
 
-    createdAt: { type: MDate, required: true, default: Date.now },
-})
+        createdAt: { type: MDate, required: true, default: Date.now },
+    },
+    // Sort usernames in a case-insensitive manner
+    {
+        collation: { locale: 'en', strength: 2 },
+    }
+)
 
 export type UserDocument = mongoose.Document & User
 
