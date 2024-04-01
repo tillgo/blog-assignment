@@ -1,25 +1,26 @@
-import express from "express";
-import dotenv from "dotenv";
-import {create} from 'express-handlebars';
+import express from 'express'
+import dotenv from 'dotenv'
+import { create } from 'express-handlebars'
 
-dotenv.config();
+dotenv.config()
 
-const app = express();
+const app = express()
 const hbs = create({
-    defaultLayout: "main"
+    defaultLayout: 'main',
 })
 
-app.use(express.static('public'));
+// expose css as static files
+app.use(express.static('public'))
 
-app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars');
-app.set('views', './src/views');
+app.engine('handlebars', hbs.engine)
+app.set('view engine', 'handlebars')
+app.set('views', './src/views')
 
 app.get('/', (req, res) => {
-    res.render('home');
-});
+    res.render('home')
+})
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000
 app.listen(port, () => {
-    console.log(`[server]: Server is listening at port ${port}`);
-});
+    console.log(`[server]: Server running on port ${port}`)
+})

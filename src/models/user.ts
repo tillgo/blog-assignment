@@ -1,8 +1,7 @@
-import mongoose, { Model } from "mongoose";
+import mongoose, { Model } from 'mongoose'
 
-const { SchemaTypes } = mongoose;
-const { String, Date: MDate } = SchemaTypes;
-
+const { SchemaTypes } = mongoose
+const { String, Date: MDate } = SchemaTypes
 
 export type User = {
     _id: string
@@ -26,11 +25,11 @@ const SCHEMA = new mongoose.Schema({
     passwordHash: { type: String, required: true },
     salt: { type: String, required: true },
 
-    createdAt: { type: MDate, required: true }
-});
+    createdAt: { type: MDate, required: true },
+})
 
-type UserEntity = Omit<User, "_id"> & { _id: any };
-export type UserDocument = mongoose.Document & UserEntity;
+type UserEntity = Omit<User, '_id'> & { _id: any }
+export type UserDocument = mongoose.Document & UserEntity
 
 export const getUserModel = (): Model<UserDocument> =>
-    mongoose.model<UserDocument>("User", SCHEMA, "user");
+    mongoose.model<UserDocument>('User', SCHEMA, 'user')
