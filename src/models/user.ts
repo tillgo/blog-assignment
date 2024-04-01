@@ -28,5 +28,8 @@ const SCHEMA = new mongoose.Schema({
 
 export type UserDocument = mongoose.Document & User
 
+/**
+ * Get the model for the user collection
+ */
 export const getUserModel = (): Model<UserDocument> =>
     mongoose.model<UserDocument>('User', SCHEMA, 'user')

@@ -46,5 +46,8 @@ const ARTICLE_SCHEMA = new mongoose.Schema({
 
 export type ArticleDocument = mongoose.Document & Article
 
+/**
+ * Get the model for the article collection
+ */
 export const getArticleModel = (): Model<ArticleDocument> =>
     mongoose.model<ArticleDocument>('Article', ARTICLE_SCHEMA, 'article')
