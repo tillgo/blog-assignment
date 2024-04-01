@@ -10,7 +10,7 @@ export type Comment = {
     body: string
 
     createdAt: Date
-    lastEdited?: Date
+    lastEditedAt?: Date
 }
 
 export type Article = {
@@ -22,7 +22,7 @@ export type Article = {
     comments: Comment[]
 
     createdAt: Date
-    lastEdited?: Date
+    lastEditedAt?: Date
 }
 
 const COMMENT_SCHEMA = new mongoose.Schema({
@@ -30,7 +30,7 @@ const COMMENT_SCHEMA = new mongoose.Schema({
     body: { type: String, required: true },
 
     createdAt: { type: MDate, required: true, default: Date.now },
-    lastEdited: { type: MDate },
+    lastEditedAt: { type: MDate },
 })
 
 const ARTICLE_SCHEMA = new mongoose.Schema({
@@ -38,10 +38,10 @@ const ARTICLE_SCHEMA = new mongoose.Schema({
     title: { type: String, required: true },
     body: { type: String, required: true },
 
-    comments: [COMMENT_SCHEMA],
+    comments: [{ type: COMMENT_SCHEMA, required: true, default: [] }],
 
     createdAt: { type: MDate, required: true, default: Date.now },
-    lastEdited: { type: MDate },
+    lastEditedAt: { type: MDate },
 })
 
 export type ArticleDocument = mongoose.Document & Article

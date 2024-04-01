@@ -1,0 +1,57 @@
+<div class='mx-auto flex w-80 flex-col justify-center px-4 pb-12 pt-6 md:pt-24'>
+    <div class='sm:mx-auto sm:w-full sm:max-w-sm'>
+        <h2 class='text-center text-2xl font-bold leading-9 tracking-tight'>Sign up for an account</h2>
+    </div>
+
+    <div class='mt-6 sm:mt-8 sm:w-full sm:max-w-sm'>
+        <form class='space-y-4 sm:space-y-6' action='/auth/sign-up' method='POST'>
+            <div>
+                <label for='username' class='block text-sm font-medium leading-6'>Username</label>
+                <div class='mt-1'>
+                    <input
+                        id='username'
+                        name='username'
+                        type='text'
+                        autocomplete='username'
+                        required
+                        class='block w-full rounded-md border-0 bg-primary-foreground px-1.5 py-1.5 shadow-sm ring-1 ring-accent-foreground sm:text-sm sm:leading-6'
+                    />
+                </div>
+            </div>
+
+            <div>
+                <div class='flex items-center justify-between'>
+                    <label
+                        for='password'
+                        class='block text-sm font-medium leading-6'
+                    >Password</label>
+                </div>
+                <div class='mt-1'>
+                    <input
+                        id='password'
+                        name='password'
+                        type='password'
+                        autocomplete='current-password'
+                        required
+                        class='block w-full rounded-md border-0 bg-primary-foreground px-1.5 py-1.5 shadow-sm ring-1 ring-accent-foreground sm:text-sm sm:leading-6'
+                    />
+                </div>
+            </div>
+
+            <div>
+                <button
+                    type='submit'
+                    class='flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-primary-foreground shadow-sm hover:brightness-75 focus-visible:outline focus-visible:outline-offset-2 focus-visible:brightness-75'
+                >Sign up</button>
+            </div>
+        </form>
+
+        <p class='mt-6 text-center text-sm text-muted-foreground sm:mt-8'>
+            Already have an account?
+            <a
+                href='/login'
+                class='font-semibold leading-6 text-primary hover:brightness-75'
+            >Login</a>
+        </p>
+    </div>
+</div>

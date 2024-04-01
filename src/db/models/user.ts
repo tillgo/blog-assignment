@@ -6,22 +6,23 @@ const { String, Date: MDate } = SchemaTypes
 export type User = {
     _id: string
     username: string
-    email: string
     firstName?: string
     lastName?: string
 
     passwordHash: string
+    isAdmin: boolean
 
     createdAt: Date
 }
+export type NewUser = Omit<User, '_id' | 'createdAt' | 'isAdmin'>
 
 const SCHEMA = new mongoose.Schema({
     username: { type: String, required: true },
-    email: { type: String, required: true },
     firstName: { type: String },
     lastName: { type: String },
 
     passwordHash: { type: String, required: true },
+    isAdmin: { type: Boolean, required: true, default: false },
 
     createdAt: { type: MDate, required: true, default: Date.now },
 })
