@@ -865,6 +865,19 @@ body {
   border-color: rgb(17 24 39 / 0.05);
 }
 
+.divide-gray-500 > :not([hidden]) ~ :not([hidden]) {
+  --tw-divide-opacity: 1;
+  border-color: rgb(107 114 128 / var(--tw-divide-opacity));
+}
+
+.divide-accent > :not([hidden]) ~ :not([hidden]) {
+  border-color: hsl(var(--accent));
+}
+
+.divide-accent\/10 > :not([hidden]) ~ :not([hidden]) {
+  border-color: hsl(var(--accent) / 0.1);
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
@@ -1012,6 +1025,11 @@ body {
 .text-xl {
   font-size: 1.25rem;
   line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 .font-bold {

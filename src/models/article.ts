@@ -1,29 +1,50 @@
 import mongoose, { Model } from 'mongoose'
+import { getUserModel } from './user'
 
 const { SchemaTypes } = mongoose
 const { String, Date: MDate, ObjectId } = SchemaTypes
 
-export type Article = {
+export type Comment = {
     _id: string
-    title: string
-    content: string
     authorId: string
+    body: string
 
     createdAt: Date
-    editedAt: Date | null
+    lastEdited?: Date
 }
 
-const SCHEMA = new mongoose.Schema({
-    title: { type: String, required: true },
-    content: { type: String, required: true },
-    authorId: { type: ObjectId, required: true },
+export type Article = {
+    _id: string
+    authorId: string
+    title: string
+    body: string
+
+    comments: Comment[]
+
+    createdAt: Date
+    lastEdited?: Date
+}
+
+const COMMENT_SCHEMA = new mongoose.Schema({
+    authorId: { type: ObjectId, required: true, ref: getUserModel },
+    body: { type: String, required: true },
 
     createdAt: { type: MDate, required: true, default: Date.now },
-    editedAt: { type: MDate },
+    lastEdited: { type: MDate },
 })
 
-type ArticleEntity = Omit<Article, '_id'> & { _id: any }
-export type ArticleDocument = mongoose.Document & ArticleEntity
+const ARTICLE_SCHEMA = new mongoose.Schema({
+    authorId: { type: ObjectId, required: true },
+    title: { type: String, required: true },
+    body: { type: String, required: true },
 
-export const getArticleDocument = (): Model<ArticleDocument> =>
-    mongoose.model<ArticleDocument>('Article', SCHEMA, 'article')
+    comments: [COMMENT_SCHEMA],
+
+    createdAt: { type: MDate, required: true, default: Date.now },
+    lastEdited: { type: MDate },
+})
+
+export type ArticleDocument = mongoose.Document & Article
+
+export const getArticleModel = (): Model<ArticleDocument> =>
+    mongoose.model<ArticleDocument>('Article', ARTICLE_SCHEMA, 'article')

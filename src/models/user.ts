@@ -7,11 +7,10 @@ export type User = {
     _id: string
     username: string
     email: string
-    firstName: string | null
-    lastName: string | null
+    firstName?: string
+    lastName?: string
 
     passwordHash: string
-    salt: string
 
     createdAt: Date
 }
@@ -23,13 +22,11 @@ const SCHEMA = new mongoose.Schema({
     lastName: { type: String },
 
     passwordHash: { type: String, required: true },
-    salt: { type: String, required: true },
 
-    createdAt: { type: MDate, required: true },
+    createdAt: { type: MDate, required: true, default: Date.now },
 })
 
-type UserEntity = Omit<User, '_id'> & { _id: any }
-export type UserDocument = mongoose.Document & UserEntity
+export type UserDocument = mongoose.Document & User
 
 export const getUserModel = (): Model<UserDocument> =>
     mongoose.model<UserDocument>('User', SCHEMA, 'user')
