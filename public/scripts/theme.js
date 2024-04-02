@@ -1,7 +1,6 @@
 const setTheme = () => {
     const currentTheme = getTheme()
     document.body.classList.add(currentTheme)
-    console.log('loaded theme: ' + currentTheme)
 }
 
 const handleThemeToggle = () => {

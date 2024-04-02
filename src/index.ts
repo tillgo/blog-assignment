@@ -30,8 +30,10 @@ mongoose.connect(process.env.MONGO_URL!).then(() => {
     console.log('[server]: Connected to MongoDB')
 })
 
-// expose css as static files
-app.use(express.static('public'))
+// expose css and js as static files
+app.use(express.static('public/styles'))
+app.use(express.static('public/scripts'))
+
 // setup handlebars template engine
 app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')

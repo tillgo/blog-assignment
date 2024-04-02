@@ -3,10 +3,10 @@
         <meta charset='utf-8' />
         <title>Till's Blog</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link href='/styles/style.css' rel='stylesheet' />
-        <script src='/js/theme.js'></script>
-        <script src='/js/mobile-menu.js'></script>
-        <script src='/js/logout.js'></script>
+        <link href='style.css' rel='stylesheet' />
+        <script src='theme.js'></script>
+        <script src='mobile-menu.js'></script>
+        <script src='logout.js'></script>
     </head>
 
     <body onload="setTheme()">
@@ -17,7 +17,7 @@
             <nav class='w-full border-b' aria-label='Global'>
                 <div class='mx-auto flex max-w-7xl items-center justify-between p-4 md:px-8'>
                     <div class='flex md:flex-1'>
-                        <h1 class='text-xl font-bold'>Till's Blog</h1>
+                        <a href="/" class='text-xl font-bold'>Till's Blog</a>
                     </div>
                     <div class='flex md:hidden'>
                         <button
@@ -33,7 +33,7 @@
                         <a
                             href='/'
                             class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/" " underline "}}'
-                        >Home</a>
+                        >Blog</a>
                         <a
                             href='/about'
                             class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/about" " underline "}}'
@@ -59,7 +59,7 @@
                     class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background p-4 ring-1 ring-accent'
                 >
                     <div class='flex items-center justify-between'>
-                        <h1 class='-m-1.5 p-1.5'>Till's Blog</h1>
+                        <a href="/" class='text-xl font-bold'>Till's Blog</a>
                         <button type='button' onclick="handleCloseMobileMenu()" class='-m-2.5 rounded-md p-2.5'>
                             <span class='sr-only'>Close menu</span>
                             {{> icons/close }}
@@ -70,30 +70,30 @@
                             <div class='space-y-2 py-6'>
                                 <a
                                     href='/'
-                                    class='-mx-3 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/" " underline "}}'
-                                >Home</a>
+                                    class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/" " underline "}}'
+                                >Blog</a>
                                 <a
                                     href='/about'
-                                    class='-mx-3 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/about" " underline "}}'
+                                    class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/about" " underline "}}'
                                 >About</a>
                             </div>
                             <div class='py-6 flex flex-col space-y-2'>
                                 {{#if userId}}
                                     <button
                                         onclick="handleLogout()"
-                                        class='-mx-3 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
+                                        class='-mx-2 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
                                     >Log out
                                         {{> icons/logout }}
                                     </button>
                                 {{else}}
                                     <a
                                         href='/login'
-                                        class='-mx-3 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
+                                        class='-mx-2 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
                                     >Log in
                                         {{> icons/login }}
                                     </a>
                                 {{/if}}
-                                <div class="-mx-1 w-full text-sm text-primary/90 flex items-center gap-2">
+                                <div class="w-full text-sm text-primary/90 flex items-center gap-2">
                                     Toggle theme:
                                     {{> theme-toggle }}
                                 </div>
@@ -104,7 +104,7 @@
             </div>
         </header>
 
-        <main class='mx-auto flex max-w-7xl'>
+        <main class='mx-auto flex max-w-7xl p-4 md:p-8'>
             {{{body}}}
         </main>
 
