@@ -6,11 +6,13 @@
         <link href='/styles/style.css' rel='stylesheet' />
         <script src='/js/theme.js'></script>
         <script src='/js/mobile-menu.js'></script>
+        <script src='/js/logout.js'></script>
     </head>
 
     <body onload="setTheme()">
         <div class="dark hidden underline"></div> <!-- This div is just used to load the dark theme classes -->
 
+        <!-- This navbar is inspired from tailwind-ui but highly customized: https://tailwindui.com/components/marketing/elements/headers -->
         <header class='bg-background'>
             <nav class='w-full border-b' aria-label='Global'>
                 <div class='mx-auto flex max-w-7xl items-center justify-between p-4 md:px-8'>
@@ -24,20 +26,7 @@
                             class='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5'
                         >
                             <span class='sr-only'>Open main menu</span>
-                            <svg
-                                class='h-6 w-6'
-                                fill='none'
-                                viewBox='0 0 24 24'
-                                stroke-width='1.5'
-                                stroke='currentColor'
-                                aria-hidden='true'
-                            >
-                                <path
-                                    stroke-linecap='round'
-                                    stroke-linejoin='round'
-                                    d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-                                />
-                            </svg>
+                            {{> icons/menu }}
                         </button>
                     </div>
                     <div class='hidden md:flex md:gap-x-12'>
@@ -52,37 +41,28 @@
                     </div>
                     <div class='hidden md:flex md:flex-1 md:justify-end md:gap-x-4 md:items-center'>
                         {{> theme-toggle }}
-                        <a href='/login' class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Log in
-                            <span aria-hidden='true'>&rarr;</span></a>
+                        {{#if userId}}
+                            <button onclick="handleLogout()" class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Log out
+                                {{> icons/logout }}
+                            </button>
+                        {{else}}
+                            <a href='/login' class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Log in
+                                {{> icons/login }}
+                            </a>
+                        {{/if}}
                     </div>
                 </div>
             </nav>
             <!-- Mobile menu, show/hide based on menu open state. -->
             <div id="mobile-menu" class='hidden' role='dialog' aria-modal='true'>
                 <div
-                    class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background px-6 py-6 ring-1 ring-accent'
+                    class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background p-4 ring-1 ring-accent'
                 >
                     <div class='flex items-center justify-between'>
-                        <a href='#' class='-m-1.5 p-1.5'>
-                            <span class='sr-only'>Your Company</span>
-                            <h1>Till's Blog</h1>
-                        </a>
+                        <h1 class='-m-1.5 p-1.5'>Till's Blog</h1>
                         <button type='button' onclick="handleCloseMobileMenu()" class='-m-2.5 rounded-md p-2.5'>
                             <span class='sr-only'>Close menu</span>
-                            <svg
-                                class='h-6 w-6'
-                                fill='none'
-                                viewBox='0 0 24 24'
-                                stroke-width='1.5'
-                                stroke='currentColor'
-                                aria-hidden='true'
-                            >
-                                <path
-                                    stroke-linecap='round'
-                                    stroke-linejoin='round'
-                                    d='M6 18L18 6M6 6l12 12'
-                                />
-                            </svg>
+                            {{> icons/close }}
                         </button>
                     </div>
                     <nav class='mt-6 flow-root'>
@@ -98,10 +78,21 @@
                                 >About</a>
                             </div>
                             <div class='py-6 flex flex-col space-y-2'>
-                                <a
-                                    href='/login'
-                                    class='-mx-3 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
-                                >Log in</a>
+                                {{#if userId}}
+                                    <button
+                                        onclick="handleLogout()"
+                                        class='-mx-3 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
+                                    >Log out
+                                        {{> icons/logout }}
+                                    </button>
+                                {{else}}
+                                    <a
+                                        href='/login'
+                                        class='-mx-3 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
+                                    >Log in
+                                        {{> icons/login }}
+                                    </a>
+                                {{/if}}
                                 <div class="-mx-1 w-full text-sm text-primary/90 flex items-center gap-2">
                                     Toggle theme:
                                     {{> theme-toggle }}

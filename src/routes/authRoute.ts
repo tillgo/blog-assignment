@@ -80,4 +80,9 @@ router.post('/sign-in', validate({ body: LoginSchema }), async (req, res) => {
     }
 })
 
+router.delete('/logout', async (req, res, next) => {
+    res.clearCookie('token')
+    res.status(200).json({ message: 'Logged out' })
+})
+
 export default router
