@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
     res.render('home')
 })
-app.get('/login', (req, res) => {
+app.get('/sign-in', (req, res) => {
     res.render('login')
 })
 app.get('/sign-up', (req, res) => {

@@ -42,11 +42,11 @@
                     <div class='hidden md:flex md:flex-1 md:justify-end md:gap-x-4 md:items-center'>
                         {{> theme-toggle }}
                         {{#if userId}}
-                            <button onclick="handleLogout()" class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Log out
+                            <button onclick="handleLogout()" class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Logout
                                 {{> icons/logout }}
                             </button>
                         {{else}}
-                            <a href='/login' class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Log in
+                            <a href='/sign-in' class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Sign in
                                 {{> icons/login }}
                             </a>
                         {{/if}}
@@ -82,14 +82,14 @@
                                     <button
                                         onclick="handleLogout()"
                                         class='-mx-2 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
-                                    >Log out
+                                    >Logout
                                         {{> icons/logout }}
                                     </button>
                                 {{else}}
                                     <a
-                                        href='/login'
+                                        href='/sign-in'
                                         class='-mx-2 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
-                                    >Log in
+                                    >Sign in
                                         {{> icons/login }}
                                     </a>
                                 {{/if}}
