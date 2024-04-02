@@ -2,52 +2,63 @@
     <head>
         <meta charset='utf-8' />
         <title>Till's Blog</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href='/styles/style.css' rel='stylesheet' />
+        <script src='/js/theme.js'></script>
+        <script src='/js/mobile-menu.js'></script>
     </head>
 
-    <body class='dark'>
+    <body onload="setTheme()">
+        <div class="dark hidden underline"></div> <!-- This div is just used to load the dark theme classes -->
 
         <header class='bg-background'>
-            <nav
-                class='mx-auto flex max-w-7xl items-center justify-between p-6 md:px-8'
-                aria-label='Global'
-            >
-                <div class='flex md:flex-1'>
-                    <h1 class='text-xl font-bold'>Till's Blog</h1>
-                </div>
-                <div class='flex md:hidden'>
-                    <button
-                        type='button'
-                        class='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5'
-                    >
-                        <span class='sr-only'>Open main menu</span>
-                        <svg
-                            class='h-6 w-6'
-                            fill='none'
-                            viewBox='0 0 24 24'
-                            stroke-width='1.5'
-                            stroke='currentColor'
-                            aria-hidden='true'
+            <nav class='w-full border-b' aria-label='Global'>
+                <div class='mx-auto flex max-w-7xl items-center justify-between p-4 md:px-8'>
+                    <div class='flex md:flex-1'>
+                        <h1 class='text-xl font-bold'>Till's Blog</h1>
+                    </div>
+                    <div class='flex md:hidden'>
+                        <button
+                            type='button'
+                            onclick="handleOpenMobileMenu()"
+                            class='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5'
                         >
-                            <path
-                                stroke-linecap='round'
-                                stroke-linejoin='round'
-                                d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
-                            />
-                        </svg>
-                    </button>
-                </div>
-                <div class='hidden md:flex md:gap-x-12'>
-                    <a href='/' class='text-sm font-semibold leading-6'>Blog</a>
-                    <a href='/about' class='text-sm font-semibold leading-6'>About</a>
-                </div>
-                <div class='hidden md:flex md:flex-1 md:justify-end'>
-                    <a href='/login' class='text-sm font-semibold leading-6'>Log in
-                        <span aria-hidden='true'>&rarr;</span></a>
+                            <span class='sr-only'>Open main menu</span>
+                            <svg
+                                class='h-6 w-6'
+                                fill='none'
+                                viewBox='0 0 24 24'
+                                stroke-width='1.5'
+                                stroke='currentColor'
+                                aria-hidden='true'
+                            >
+                                <path
+                                    stroke-linecap='round'
+                                    stroke-linejoin='round'
+                                    d='M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5'
+                                />
+                            </svg>
+                        </button>
+                    </div>
+                    <div class='hidden md:flex md:gap-x-12'>
+                        <a
+                            href='/'
+                            class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/" " underline "}}'
+                        >Home</a>
+                        <a
+                            href='/about'
+                            class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/about" " underline "}}'
+                        >About</a>
+                    </div>
+                    <div class='hidden md:flex md:flex-1 md:justify-end md:gap-x-4 md:items-center'>
+                        {{> theme-toggle }}
+                        <a href='/login' class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Log in
+                            <span aria-hidden='true'>&rarr;</span></a>
+                    </div>
                 </div>
             </nav>
             <!-- Mobile menu, show/hide based on menu open state. -->
-            <div class='hidden' role='dialog' aria-modal='true'>
+            <div id="mobile-menu" class='hidden' role='dialog' aria-modal='true'>
                 <div
                     class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background px-6 py-6 ring-1 ring-accent'
                 >
@@ -56,7 +67,7 @@
                             <span class='sr-only'>Your Company</span>
                             <h1>Till's Blog</h1>
                         </a>
-                        <button type='button' class='-m-2.5 rounded-md p-2.5'>
+                        <button type='button' onclick="handleCloseMobileMenu()" class='-m-2.5 rounded-md p-2.5'>
                             <span class='sr-only'>Close menu</span>
                             <svg
                                 class='h-6 w-6'
@@ -79,18 +90,22 @@
                             <div class='space-y-2 py-6'>
                                 <a
                                     href='/'
-                                    class='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-accent'
-                                >Blog</a>
+                                    class='-mx-3 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/" " underline "}}'
+                                >Home</a>
                                 <a
                                     href='/about'
-                                    class='-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-accent'
+                                    class='-mx-3 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/about" " underline "}}'
                                 >About</a>
                             </div>
-                            <div class='py-6'>
+                            <div class='py-6 flex flex-col space-y-2'>
                                 <a
                                     href='/login'
-                                    class='-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 hover:bg-accent'
+                                    class='-mx-3 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
                                 >Log in</a>
+                                <div class="-mx-1 w-full text-sm text-primary/90 flex items-center gap-2">
+                                    Toggle theme:
+                                    {{> theme-toggle }}
+                                </div>
                             </div>
                         </div>
                     </nav>

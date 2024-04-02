@@ -19,6 +19,9 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
             req.userId = decoded.id
             // @ts-ignore
             req.isAdmin = decoded.isAdmin
+
+            res.locals.userId = decoded.id
+            res.locals.isAdmin = decoded.isAdmin
         }
 
         return next()

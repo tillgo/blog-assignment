@@ -6,6 +6,7 @@ import authRoute from './routes/authRoute'
 import articlesRoute from './routes/articlesRoute'
 import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
+import { activeLink } from './middleware/activeLink'
 
 // load env variables (prod: env vars, dev: .env file)
 if (process.env.NODE_ENV !== 'production') {
@@ -16,6 +17,12 @@ if (process.env.NODE_ENV !== 'production') {
 const app = express()
 const hbs = create({
     defaultLayout: 'main',
+    partialsDir: __dirname + '/views/partials/',
+    helpers: {
+        styleActive: (activePath: string, linkPath: string, style: string) => {
+            return activePath === linkPath ? style : ''
+        },
+    },
 })
 
 // connect to DB
@@ -33,18 +40,23 @@ app.set('views', './src/views')
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
+app.use(authenticate)
+app.use(activeLink)
 
-app.get('/', authenticate, (req, res) => {
+app.get('/', (req, res) => {
     res.render('home')
 })
-app.get('/login', authenticate, (req, res) => {
+app.get('/about', (req, res) => {
+    res.render('home')
+})
+app.get('/login', (req, res) => {
     res.render('login')
 })
-app.get('/sign-up', authenticate, (req, res) => {
+app.get('/sign-up', (req, res) => {
     res.render('sign-up')
 })
-app.use('/auth', authenticate, authRoute)
-app.use('/articles', authenticate, articlesRoute)
+app.use('/auth', authRoute)
+app.use('/articles', articlesRoute)
 
 // start http server on specified port
 const port = process.env.PORT || 3000
