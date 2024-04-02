@@ -56,16 +56,16 @@
             <!-- Mobile menu, show/hide based on menu open state. -->
             <div id="mobile-menu" class='hidden' role='dialog' aria-modal='true'>
                 <div
-                    class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background p-4 ring-1 ring-accent'
+                    class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background ring-1 ring-accent'
                 >
-                    <div class='flex items-center justify-between'>
+                    <div class='flex items-center justify-between p-4 border-b'>
                         <a href="/" class='text-xl font-bold'>Till's Blog</a>
                         <button type='button' onclick="handleCloseMobileMenu()" class='-m-2.5 rounded-md p-2.5'>
                             <span class='sr-only'>Close menu</span>
                             {{> icons/close }}
                         </button>
                     </div>
-                    <nav class='mt-6 flow-root'>
+                    <nav class='flow-root p-4'>
                         <div class='-my-6 divide-y divide-accent'>
                             <div class='space-y-2 py-6'>
                                 <a
