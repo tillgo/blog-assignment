@@ -15,7 +15,7 @@
         <!-- This navbar is inspired from tailwind-ui but highly customized: https://tailwindui.com/components/marketing/elements/headers -->
         <header class='bg-background'>
             <nav class='w-full border-b' aria-label='Global'>
-                <div class='mx-auto flex max-w-7xl items-center justify-between p-4 md:px-8'>
+                <div class='mx-auto flex max-w-6xl items-center justify-between p-4 px-6 md:px-12'>
                     <div class='flex md:flex-1'>
                         <a href="/" class='text-xl font-bold'>Till's Blog</a>
                     </div>
@@ -58,14 +58,14 @@
                 <div
                     class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background ring-1 ring-accent'
                 >
-                    <div class='flex items-center justify-between p-4 border-b'>
+                    <div class='flex items-center justify-between p-4 px-6 border-b'>
                         <a href="/" class='text-xl font-bold'>Till's Blog</a>
                         <button type='button' onclick="handleCloseMobileMenu()" class='-m-2.5 rounded-md p-2.5'>
                             <span class='sr-only'>Close menu</span>
                             {{> icons/close }}
                         </button>
                     </div>
-                    <nav class='flow-root p-4'>
+                    <nav class='flow-root p-4 px-6'>
                         <div class='-my-6 divide-y divide-accent'>
                             <div class='space-y-2 py-6'>
                                 <a
@@ -104,11 +104,11 @@
             </div>
         </header>
 
-        <main class='mx-auto flex max-w-7xl p-4 md:p-8'>
+        <main class='mx-auto flex max-w-6xl p-6 md:p-12'>
             {{{body}}}
         </main>
 
-        <footer class='mx-auto flex max-w-7xl justify-center'></footer>
+        <footer class='mx-auto flex max-w-6xl justify-center'></footer>
 
     </body>
 </html>
