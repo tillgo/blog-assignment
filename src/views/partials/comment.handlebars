@@ -1,0 +1,53 @@
+<form action='/articles/comments/{commendId}' class='space-y-1'>
+    <div class='flex space-x-2 items-center'>
+        <h3 class='font-bold'>@{{author.username}}{{youAndAuthorIndicator userId articleAuthorId author._id}}</h3>
+        <div class='text-primary/80'>{{toXMagnitudeAgo createdAt}}</div>
+        {{#if (eq author._id userId)}}
+            <button
+                type='button'
+                onclick="handleEditToggle('{{_id}}', '{{body}}')"
+                class='h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
+            >
+                Edit{{> icons/edit}}
+            </button>
+            <button
+                type='button'
+                class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90 h-6 px-2'
+            >
+                Delete
+            </button>
+        {{/if}}
+    </div>
+    <p id="comment-{{_id}}">
+        {{body}}
+    </p>
+    <div id="edit-comment-{{_id}}" class="hidden">
+        <div class='flex flex-col space-y-2'>
+        <textarea
+            id='edit-comment-input-{{_id}}'
+            name='editComment'
+            type='text'
+            rows='2'
+            required
+            placeholder='Edit your comment...'
+            class='text-md flex w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:text-lg'
+        >{{body}}</textarea>
+            <div class="ml-auto flex gap-2">
+                <button
+                    type='button'
+                    onclick="handleEditToggle('{{_id}}', '{{body}}')"
+                    class='inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2'
+                >
+                    Cancel
+                </button>
+                <button
+                    type='submit'
+                    name="edit"
+                    class='inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                >
+                    Save edit
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

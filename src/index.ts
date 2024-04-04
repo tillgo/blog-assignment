@@ -7,6 +7,7 @@ import articlesRoute from './routes/articlesRoute'
 import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
 import { activeLink } from './middleware/activeLink'
+import { dateToXMagnitudeAgo } from './lib/dateUtils'
 
 // load env variables (prod: env vars, dev: .env file)
 if (process.env.NODE_ENV !== 'production') {
@@ -21,6 +22,16 @@ const hbs = create({
     helpers: {
         styleActive: (activePath: string, linkPath: string, style: string) => {
             return activePath === linkPath ? style : ''
+        },
+        toXMagnitudeAgo: dateToXMagnitudeAgo,
+        eq: (a: unknown, b: unknown) => a === b,
+        youAndAuthorIndicator: (userId: string, authorId: string, commentAuthorId: string) => {
+            console.log(userId, authorId, commentAuthorId)
+            return userId === commentAuthorId
+                ? ' (you)'
+                : authorId === commentAuthorId
+                  ? ' (author)'
+                  : ''
         },
     },
 })
