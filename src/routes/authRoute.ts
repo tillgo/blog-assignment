@@ -27,7 +27,7 @@ router.post('/sign-up', validate({ body: LoginSchema }), async (req, res) => {
 
             const user = await createUser({ username: data.username, passwordHash: hash })
 
-            const token = createSecretToken(user.id, user.isAdmin)
+            const token = createSecretToken(user._id, user.isAdmin)
 
             res.cookie('token', token, {
                 httpOnly: true,
@@ -63,7 +63,7 @@ router.post('/sign-in', validate({ body: LoginSchema }), async (req, res) => {
             })
         }
 
-        const token = createSecretToken(user.id, user.isAdmin)
+        const token = createSecretToken(user._id, user.isAdmin)
 
         res.cookie('token', token, {
             httpOnly: true,
