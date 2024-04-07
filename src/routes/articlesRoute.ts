@@ -2,6 +2,10 @@ import express from 'express'
 
 const router = express.Router()
 
+router.get('/new', (req, res) => {
+    res.render('new-article')
+})
+
 router.get('/', (req, res) => {
     res.render('article', {
         article: {
@@ -57,5 +61,4 @@ router.get('/', (req, res) => {
         },
     })
 })
-
 export default router
