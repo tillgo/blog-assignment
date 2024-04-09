@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express'
 import { AnyZodObject, z, ZodError } from 'zod'
+import { BadRequestProblem } from '../lib/errors'
 
 type Schema<T extends AnyZodObject, K extends AnyZodObject, J extends AnyZodObject> = {
     body?: T
@@ -28,22 +29,14 @@ export const validate =
     async (req: Request, res: Response, next: NextFunction) => {
         try {
             const zodSchema = createCombinedSchema(schema)
-            await zodSchema.parseAsync({
+            zodSchema.parse({
                 body: req.body,
                 query: req.query,
                 params: req.params,
             })
 
-            return next()
+            next()
         } catch (error) {
-            if (error instanceof ZodError) {
-                res.status(400).json({
-                    error: error,
-                    message: 'Validation errors occurred',
-                })
-            } else {
-                console.error('Unexpected error:', error)
-                next(error)
-            }
+            next(error) // ZodError will be caught by the errorHandler
         }
     }

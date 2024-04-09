@@ -1,3 +1,4 @@
+import 'express-async-errors' // This line is required to handle async errors in Express
 import express from 'express'
 import dotenv from 'dotenv'
 import { create } from 'express-handlebars'
@@ -8,6 +9,8 @@ import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
 import { activeLink } from './middleware/activeLink'
 import { dateToXMagnitudeAgo } from './lib/dateUtils'
+import { eq, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
+import { errorHandler } from './middleware/errorHandler'
 
 // load env variables (prod: env vars, dev: .env file)
 if (process.env.NODE_ENV !== 'production') {
@@ -20,19 +23,10 @@ const hbs = create({
     defaultLayout: 'main',
     partialsDir: __dirname + '/views/partials/',
     helpers: {
-        styleActive: (activePath: string, linkPath: string, style: string) => {
-            return activePath === linkPath ? style : ''
-        },
+        styleActive,
         toXMagnitudeAgo: dateToXMagnitudeAgo,
-        eq: (a: unknown, b: unknown) => a === b,
-        youAndAuthorIndicator: (userId: string, authorId: string, commentAuthorId: string) => {
-            console.log(userId, authorId, commentAuthorId)
-            return userId === commentAuthorId
-                ? ' (you)'
-                : authorId === commentAuthorId
-                  ? ' (author)'
-                  : ''
-        },
+        eq,
+        youAndAuthorIndicator,
     },
 })
 
@@ -70,6 +64,9 @@ app.get('/sign-up', (req, res) => {
 })
 app.use('/auth', authRoute)
 app.use('/articles', articlesRoute)
+
+// handle all thrown errors with middleware
+app.use(errorHandler)
 
 // start http server on specified port
 const port = process.env.PORT || 3000

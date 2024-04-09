@@ -1749,6 +1749,10 @@ body {
   color: hsl(var(--primary) / 0.95);
 }
 
+.text-destructive {
+  color: hsl(var(--destructive));
+}
+
 .underline {
   text-decoration-line: underline;
 }
