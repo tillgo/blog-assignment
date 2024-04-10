@@ -4,12 +4,10 @@ const handleLogout = () => {
     })
 }
 
-const handleSignIn = (event) => {
+const handleSignIn = () => {
     const form = document.getElementById('sign-in-form')
     const username = form.querySelector('#username').value
     const password = form.querySelector('#password').value
-
-    console.log(username, password)
 
     fetch('/auth/sign-in', {
         method: 'POST',

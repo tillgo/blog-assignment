@@ -1,12 +1,15 @@
 import express from 'express'
+import { guardUser } from '../middleware/guardUser'
 
 const router = express.Router()
 
-router.get('/new', (req, res) => {
+// GET /articles/new - render new article form
+router.get('/new', guardUser, (req, res) => {
     res.render('new-article')
 })
 
-router.get('/', (req, res) => {
+// GET /articles/:id - render article details with comments
+router.get('/:id', (req, res) => {
     res.render('article', {
         article: {
             _id: '1',

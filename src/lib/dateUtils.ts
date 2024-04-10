@@ -1,3 +1,8 @@
+/**
+ * Converts a date to a string in the format "x time ago"
+ *
+ * @param date The date to convert
+ */
 export const dateToXMagnitudeAgo = (date: Date): string => {
     const now = new Date()
     const diff = now.getTime() - date.getTime()

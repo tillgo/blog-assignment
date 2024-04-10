@@ -8,6 +8,7 @@ import { BadRequestProblem } from '../lib/errors'
 
 const router = express.Router()
 
+// POST /auth/sign-up - Sign up a new user
 router.post('/sign-up', validate({ body: LoginSchema }), async (req, res) => {
     const data = req.body as LoginData
 
@@ -30,6 +31,7 @@ router.post('/sign-up', validate({ body: LoginSchema }), async (req, res) => {
     res.status(201).json({ message: 'Signed up' })
 })
 
+// POST /auth/sign-in - Sign in a user
 router.post('/sign-in', validate({ body: LoginSchema }), async (req, res) => {
     const data = req.body as LoginData
 
@@ -54,6 +56,7 @@ router.post('/sign-in', validate({ body: LoginSchema }), async (req, res) => {
     res.status(200).json({ message: 'Signed in' })
 })
 
+// DELETE /auth/logout - Log out a user
 router.delete('/logout', async (req, res, next) => {
     res.clearCookie('token')
     res.status(200).json({ message: 'Logged out' })

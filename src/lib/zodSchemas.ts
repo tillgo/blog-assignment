@@ -1,5 +1,8 @@
 import { z } from 'zod'
 
+/**
+ * Schema for the sign-in and sign-up form data
+ */
 export const LoginSchema = z.object({
     username: z
         .string()

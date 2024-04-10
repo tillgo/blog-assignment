@@ -22,6 +22,11 @@ const createCombinedSchema = <
     })
 }
 
+/**
+ * Middleware to validate request data using a given zod schema.
+ *
+ * @param schema Zod schema to validate request data
+ */
 export const validate =
     <T extends AnyZodObject, K extends AnyZodObject, J extends AnyZodObject>(
         schema: Schema<T, K, J>

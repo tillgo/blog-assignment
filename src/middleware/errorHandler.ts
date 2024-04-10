@@ -2,6 +2,15 @@ import { NextFunction, Request, Response } from 'express'
 import { ThrowableProblem } from '../lib/errors'
 import { ZodError } from 'zod'
 
+/**
+ * Error handler middleware.
+ * This middleware catches errors thrown in the application and sends an appropriate response.
+ *
+ * @param err error object, that was caught
+ * @param req
+ * @param res
+ * @param next
+ */
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
     if (err instanceof ThrowableProblem) {
         // Handle custom problems

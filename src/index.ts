@@ -11,6 +11,16 @@ import { activeLink } from './middleware/activeLink'
 import { dateToXMagnitudeAgo } from './lib/dateUtils'
 import { eq, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
+import { guardAdmin } from './middleware/guardAdmin'
+
+// extend express Request interface to include custom properties
+declare module 'express' {
+    // @ts-ignore
+    interface Request extends express.Request {
+        userId?: string
+        isAdmin?: boolean
+    }
+}
 
 // load env variables (prod: env vars, dev: .env file)
 if (process.env.NODE_ENV !== 'production') {
@@ -44,23 +54,28 @@ app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 app.set('views', './src/views')
 
+// setup middlewares
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cookieParser())
 app.use(authenticate)
 app.use(activeLink)
 
+// setup routes
 app.get('/', (req, res) => {
     res.render('home')
 })
 app.get('/about', (req, res) => {
-    res.render('home')
+    res.render('about')
 })
 app.get('/sign-in', (req, res) => {
-    res.render('login')
+    res.render('sign-in')
 })
 app.get('/sign-up', (req, res) => {
     res.render('sign-up')
+})
+app.get('/admin-panel', guardAdmin, (req, res) => {
+    res.render('admin-panel')
 })
 app.use('/auth', authRoute)
 app.use('/articles', articlesRoute)
