@@ -1,6 +1,6 @@
 <script src='/article-comments.js'></script>
 
-<div class='mx-auto max-w-prose space-y-10 md:space-y-14'>
+<div class='mx-auto max-w-prose w-full space-y-10 md:space-y-14'>
     <article class='flex w-full flex-col space-y-8 md:space-y-10'>
         <div class='space-y-4'>
             <h1 class='text-4xl font-extrabold text-primary/95 md:text-5xl md:leading-tight'>
@@ -18,22 +18,16 @@
         </div>
 
         {{#if article.image}}
-            <img src='placeholder.jpg' alt='Featured image of post' class='rounded-lg w-full' />
+            <img src='{{article.image}}' alt='Featured image of post' class='rounded-lg w-full' />
         {{/if}}
 
         <div class='prose prose-lg text-primary/95 md:prose-xl'>
-            <p>This is the main content of the blog article. You can add paragraphs, images, lists,
-                and other elements here.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut imperdiet magna.
-                Aliquam erat volutpat. Pellentesque lorem leo, tempus at semper nec, auctor ac nibh.
-                Mauris vulputate arcu neque, vitae tincidunt odio faucibus vitae. Nulla facilisi.
-                Aenean eu leo quam. Pellentesque lorem leo, tempus at semper nec, auctor ac nibh.
-                Mauris vulputate arcu neque, vitae tincidunt odio faucibus vitae.</p>
+            {{{article.body}}}
         </div>
     </article>
 
     <section class='flex flex-col gap-4'>
-        <h2 class='text-2xl font-bold'>3 Comments</h2>
+        <h2 class='text-2xl font-bold'>{{article.comments.length}} Comments</h2>
 
         <form method='POST' action='/articles/comments' class='flex flex-col space-y-2'>
             <textarea

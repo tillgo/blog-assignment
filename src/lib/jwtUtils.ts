@@ -1,4 +1,5 @@
 import jwt, { JwtPayload } from 'jsonwebtoken'
+import mongoose from 'mongoose'
 
 /**
  * Create a secret token with 1week expiration
@@ -6,7 +7,7 @@ import jwt, { JwtPayload } from 'jsonwebtoken'
  * @param id user id
  * @param isAdmin flag for admin role
  */
-export const createSecretToken = (id: string, isAdmin: boolean) => {
+export const createSecretToken = (id: mongoose.Types.ObjectId, isAdmin: boolean) => {
     return jwt.sign({ id, isAdmin }, process.env.JWT_SECRET ?? '', {
         expiresIn: '1w',
     })

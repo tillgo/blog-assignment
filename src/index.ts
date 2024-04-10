@@ -12,6 +12,7 @@ import { dateToXMagnitudeAgo } from './lib/dateUtils'
 import { eq, or, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
 import { guardPage } from './middleware/guardPage'
+import articlesApi from './routes/articlesApi'
 
 // extend express Request interface to include custom properties
 declare module 'express' {
@@ -81,6 +82,7 @@ app.get('/admin-panel', guardPage(true), (req, res) => {
 })
 app.use('/auth', authRoute)
 app.use('/articles', articlesRoute)
+app.use('/api/articles', articlesApi)
 
 // handle all thrown errors with middleware
 app.use(errorHandler)

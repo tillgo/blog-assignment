@@ -4,7 +4,7 @@ const { SchemaTypes } = mongoose
 const { String, Date: MDate } = SchemaTypes
 
 export type User = {
-    _id: string
+    _id: mongoose.Types.ObjectId
     username: string
     firstName?: string
     lastName?: string

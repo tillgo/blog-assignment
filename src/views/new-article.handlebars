@@ -1,33 +1,39 @@
+<!-- Using the Quill.js library as a rich text editor -->
+<link href="/quill.snow.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.js"></script>
+<script src="/createArticle.js"></script>
+
 <div class='w-full'>
-    <form class='grid grid-cols-2 gap-3'>
+    <form id="new-article-form" class='grid grid-cols-2 gap-3'>
         <div class='col-span-2 flex justify-between mb-2 md:mb-3'>
             <h1 class='text-4xl font-semibold'>New Article</h1>
             <button
-                type='button'
-                onclick='handlePublishArticle()'
+                type='submit'
                 class='inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
             >
                 Publish Article
             </button>
         </div>
 
+        <input type="hidden" id="authorId" name="authorId" value="{{userId}}">
+
         <div class='col-span-2'>
-            {{> input id='title' name='title' type='text' label='Title' required=true maxlength=200 }}
+            {{> input id='title' name='title' type='text' label='Title*' required=true maxlength=200 }}
         </div>
 
         <div class='col-span-2'>
-            {{> input id='subtitle' name='subtitle' type='text' label='Subtitle' required=false placeholder='optional' maxlength=200 }}
+            {{> input id='subtitle' name='subtitle' type='text' label='Subtitle' required=false maxlength=200 }}
         </div>
 
         <div>
-            {{> input id='category' name='category' type='text' label='Category' required=false }}
+            {{> input id='category' name='category' type='text' label='Category' required=false maxlength=50 }}
         </div>
         <div>
-            {{> input id='timeToRead' name='timeToRead' type='number' label='Time to read' required=true placeholder='minutes' pattern='[0-9]*' numeric=true }}
+            {{> input id='timeToRead' name='timeToRead' type='number' label='Time to read' required=false placeholder='minutes' pattern='[0-9]*' numeric=true }}
         </div>
 
         <div class='col-span-2'>
-            {{> input id='image' name='image' type='text' label='Featured image' required=false placeholder='URL' pattern='https?://.*' }}
+            {{> input id='image' name='image' type='text' label='Featured image' required=false placeholder='URL' pattern='https?://.*' maxlength=200 }}
         </div>
 
         <section class="col-span-2 mt-2">
@@ -36,11 +42,3 @@
         </section>
     </form>
 </div>
-
-<link href="/quill.snow.css" rel="stylesheet" />
-<script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.5/dist/quill.js"></script>
-<script>
-    const quill = new Quill('#editor', {
-        theme: 'snow',
-    });
-</script>

@@ -17,3 +17,17 @@ export const LoginSchema = z.object({
         .min(6, 'Password must be at least 6 characters long'),
 })
 export type LoginData = z.infer<typeof LoginSchema>
+
+export const CreateArticleSchema = z.object({
+    title: z
+        .string()
+        .max(200, "Title can't be longer than 200 characters")
+        .min(3, 'Title must be at least 3 characters long'),
+    subtitle: z.string().max(200, "Subtitle can't be longer than 200 characters").optional(),
+    authorId: z.string(),
+    category: z.string().max(50, "Category can't be longer than 50 characters").optional(),
+    timeToRead: z.number().optional(),
+    image: z.string().max(200, "Image-URL can't be longer than 200 characters").optional(),
+    body: z.string(),
+})
+export type CreateArticleData = z.infer<typeof CreateArticleSchema>

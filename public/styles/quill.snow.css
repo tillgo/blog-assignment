@@ -11,7 +11,8 @@
     font-size: 13px;
     height: 100%;
     margin: 0;
-    position: relative
+    position: relative;
+    background-color: hsl(var(--background));
 }
 
 .ql-container.ql-disabled .ql-tooltip {
@@ -581,7 +582,7 @@
 }
 
 .ql-editor.ql-blank::before {
-    color: rgba(0, 0, 0, 0.6);
+    color: hsl(var(--primary));
     content: attr(data-placeholder);
     font-style: italic;
     left: 15px;
@@ -634,15 +635,15 @@
 
 @media (pointer: coarse) {
     .ql-snow.ql-toolbar button:hover:not(.ql-active), .ql-snow .ql-toolbar button:hover:not(.ql-active) {
-        color: #444
+        color: hsl(var(--primary))
     }
 
     .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-fill, .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-fill, .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill, .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke.ql-fill {
-        fill: #444
+        fill: hsl(var(--primary))
     }
 
     .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke, .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke, .ql-snow.ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter, .ql-snow .ql-toolbar button:hover:not(.ql-active) .ql-stroke-miter {
-        stroke: #444
+        stroke: hsl(var(--primary))
     }
 }
 
@@ -689,7 +690,7 @@
 
 .ql-snow .ql-stroke {
     fill: none;
-    stroke: #444;
+    stroke: hsl(var(--primary));
     stroke-linecap: round;
     stroke-linejoin: round;
     stroke-width: 2
@@ -697,13 +698,13 @@
 
 .ql-snow .ql-stroke-miter {
     fill: none;
-    stroke: #444;
+    stroke: hsl(var(--primary));
     stroke-miterlimit: 10;
     stroke-width: 2
 }
 
 .ql-snow .ql-fill, .ql-snow .ql-stroke.ql-fill {
-    fill: #444
+    fill: hsl(var(--primary))
 }
 
 .ql-snow .ql-empty {

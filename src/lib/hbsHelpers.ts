@@ -17,7 +17,7 @@ export const styleActive = (activePath: string, linkPath: string, style: string)
  * @param a
  * @param b
  */
-export const eq = (a: unknown, b: unknown) => a === b
+export const eq = (a: unknown, b: unknown) => a == b
 
 /**
  * Helper for 'or' operation
@@ -41,6 +41,5 @@ export const youAndAuthorIndicator = (
     authorId: string,
     commentAuthorId: string
 ) => {
-    console.log(userId, authorId, commentAuthorId)
     return userId === commentAuthorId ? ' (you)' : authorId === commentAuthorId ? ' (author)' : ''
 }

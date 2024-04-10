@@ -1414,6 +1414,10 @@ body {
   margin-right: auto;
 }
 
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
 .mb-auto {
   margin-bottom: auto;
 }
@@ -1426,20 +1430,12 @@ body {
   margin-top: 0.25rem;
 }
 
-.mt-6 {
-  margin-top: 1.5rem;
-}
-
-.mb-2 {
-  margin-bottom: 0.5rem;
-}
-
-.mb-4 {
-  margin-bottom: 1rem;
-}
-
 .mt-2 {
   margin-top: 0.5rem;
+}
+
+.mt-6 {
+  margin-top: 1.5rem;
 }
 
 .block {
@@ -1514,10 +1510,6 @@ body {
   width: 100%;
 }
 
-.w-2 {
-  width: 0.5rem;
-}
-
 .max-w-6xl {
   max-width: 72rem;
 }
@@ -1544,10 +1536,6 @@ body {
 
 .items-center {
   align-items: center;
-}
-
-.justify-end {
-  justify-content: flex-end;
 }
 
 .justify-center {
@@ -1673,10 +1661,6 @@ body {
 
 .bg-primary {
   background-color: hsl(var(--primary));
-}
-
-.bg-primary-foreground {
-  background-color: hsl(var(--primary-foreground));
 }
 
 .p-2 {
@@ -1822,21 +1806,8 @@ body {
   color: hsl(var(--primary) / 0.95);
 }
 
-.text-red-800 {
-  --tw-text-opacity: 1;
-  color: rgb(153 27 27 / var(--tw-text-opacity));
-}
-
 .underline {
   text-decoration-line: underline;
-}
-
-.accent-red-400 {
-  accent-color: #f87171;
-}
-
-.accent-red-600 {
-  accent-color: #dc2626;
 }
 
 .ring-1 {
@@ -2215,10 +2186,6 @@ body {
 }
 
 @media (min-width: 768px) {
-  .md\:mb-4 {
-    margin-bottom: 1rem;
-  }
-
   .md\:mb-3 {
     margin-bottom: 0.75rem;
   }
