@@ -9,7 +9,7 @@ import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
 import { activeLink } from './middleware/activeLink'
 import { dateToXMagnitudeAgo } from './lib/dateUtils'
-import { eq, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
+import { eq, or, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
 import { guardPage } from './middleware/guardPage'
 
@@ -36,6 +36,7 @@ const hbs = create({
         styleActive,
         toXMagnitudeAgo: dateToXMagnitudeAgo,
         eq,
+        or,
         youAndAuthorIndicator,
         uriEscape: encodeURIComponent,
     },

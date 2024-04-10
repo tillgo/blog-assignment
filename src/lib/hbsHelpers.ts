@@ -20,6 +20,14 @@ export const styleActive = (activePath: string, linkPath: string, style: string)
 export const eq = (a: unknown, b: unknown) => a === b
 
 /**
+ * Helper for 'or' operation
+ *
+ * @param a
+ * @param b
+ */
+export const or = (a: unknown, b: unknown) => a || b
+
+/**
  * Helper function to indicate if the current user is the author of a comment or the author of the article
  *
  * Returns ' (you)' if the current user is the author of the comment, ' (author)' if the current user is the author of the article

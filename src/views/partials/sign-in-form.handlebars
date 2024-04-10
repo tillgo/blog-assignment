@@ -12,40 +12,21 @@
     <div class='mt-6 sm:mt-8 sm:w-full sm:max-w-sm'>
         <form class='space-y-4 sm:space-y-6' id='{{idPrefix}}-form'>
             <div>
-                <label for='username' class='block text-sm font-medium leading-6'>Username</label>
-                <div class='mt-1'>
-                    <input
-                        id='username'
-                        name='username'
-                        type='text'
-                        autocomplete='username'
-                        required
-                        class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-                    />
-                </div>
+                {{> input id='username' name='username' type='text' label='Username' required=true autocomplete='username'}}
             </div>
 
             <div>
-                <label for='password' class='block text-sm font-medium leading-6'>Password</label>
-                <div class='mt-1'>
-                    <input
-                        id='password'
-                        name='password'
-                        type='password'
-                        autocomplete='current-password'
-                        required
-                        class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50'
-                    />
-                </div>
+                {{> input id='password' name='password' type='password' label='Password' required=true autocomplete='password'}}
             </div>
 
             <p id='sign-in-error' class='hidden text-sm text-destructive'>Error message</p>
 
             <div>
                 <button
+                    id='submitButton'
                     type='button'
                     onclick='{{submitHandler}}'
-                    class='inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
+                    class='inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
                 >
                     {{#if isSignUp}}
                         Sign up
@@ -75,3 +56,17 @@
         </p>
     </div>
 </div>
+
+
+<script>
+    // script to submit form on enter key press
+    const form = document.getElementById('{{idPrefix}}-form');
+    const submitButton = document.getElementById('submitButton');
+
+    form.addEventListener('keypress', function(event) {
+        if (event.key === 'Enter') {
+            // Simulate click on submit button
+            submitButton.click();
+        }
+    });
+</script>

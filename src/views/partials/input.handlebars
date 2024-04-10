@@ -1,0 +1,29 @@
+<label for='{{id}}' class='block text-sm font-medium leading-6'>{{label}}</label>
+<div class='mt-1'>
+    <input
+        id='{{id}}'
+        name='{{name}}'
+        type='{{type}}'
+        placeholder='{{placeholder}}'
+        {{#if autocomplete}}autocomplete='{{autocomplete}}'{{/if}}
+        {{#if required}}required{{/if}}
+        {{#if pattern}}pattern='{{pattern}}'{{/if}}
+        {{#if maxlength}}maxlength='{{maxlength}}'{{/if}}
+        {{#if value}}value='{{value}}'{{/if}}
+        class='flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+    />
+</div>
+
+{{#if numeric}}
+    <script>
+        document.getElementById('{{id}}').addEventListener("keydown", (event) => {
+            // Allow backspace, delete, escape, arrow keys
+            const allowedKeys = [8, 9, 27, 37, 38, 39, 40];
+
+            if (!event.key.match(/\d/) && !allowedKeys.includes(event.keyCode)) {
+                event.preventDefault();
+            }
+        });
+    </script>
+{{/if}}
+
