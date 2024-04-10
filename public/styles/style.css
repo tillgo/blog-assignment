@@ -1438,6 +1438,10 @@ body {
   margin-bottom: 1rem;
 }
 
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
 .block {
   display: block;
 }
@@ -1508,6 +1512,10 @@ body {
 
 .w-full {
   width: 100%;
+}
+
+.w-2 {
+  width: 0.5rem;
 }
 
 .max-w-6xl {
@@ -1667,6 +1675,10 @@ body {
   background-color: hsl(var(--primary));
 }
 
+.bg-primary-foreground {
+  background-color: hsl(var(--primary-foreground));
+}
+
 .p-2 {
   padding: 0.5rem;
 }
@@ -1810,8 +1822,21 @@ body {
   color: hsl(var(--primary) / 0.95);
 }
 
+.text-red-800 {
+  --tw-text-opacity: 1;
+  color: rgb(153 27 27 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
+}
+
+.accent-red-400 {
+  accent-color: #f87171;
+}
+
+.accent-red-600 {
+  accent-color: #dc2626;
 }
 
 .ring-1 {
