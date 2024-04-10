@@ -18,7 +18,7 @@
         <input type="hidden" id="authorId" name="authorId" value="{{userId}}">
 
         <div class='col-span-2'>
-            {{> input id='title' name='title' type='text' label='Title*' required=true maxlength=200 }}
+            {{> input id='title' name='title' type='text' label='Title' required=true maxlength=200 }}
         </div>
 
         <div class='col-span-2'>
@@ -37,8 +37,8 @@
         </div>
 
         <section class="col-span-2 mt-2">
-            <label for="editor" class="block text-sm font-medium leading-6">Content</label>
-            <div id="editor" class="mt-1"></div>
+            <label for="editor" class="block text-sm font-medium leading-6 mb-1">Content<span class="text-red-600">*</span></label>
+            <div id="editor"></div>
         </section>
     </form>
 </div>

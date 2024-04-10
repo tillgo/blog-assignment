@@ -1438,6 +1438,10 @@ body {
   margin-top: 1.5rem;
 }
 
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
 .block {
   display: block;
 }
@@ -1804,6 +1808,11 @@ body {
 
 .text-primary\/95 {
   color: hsl(var(--primary) / 0.95);
+}
+
+.text-red-600 {
+  --tw-text-opacity: 1;
+  color: rgb(220 38 38 / var(--tw-text-opacity));
 }
 
 .underline {

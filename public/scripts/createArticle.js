@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         ['bold', 'italic', 'underline', 'strike'],
         ['blockquote', 'code-block'],
-        ['link', 'image', 'video'],
+        ['link', 'image'],
 
         [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
         [{ indent: '-1' }, { indent: '+1' }],
