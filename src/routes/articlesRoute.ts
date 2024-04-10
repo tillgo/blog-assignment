@@ -1,10 +1,10 @@
 import express from 'express'
-import { guardUser } from '../middleware/guardUser'
+import { guardPage } from '../middleware/guardPage'
 
 const router = express.Router()
 
 // GET /articles/new - render new article form
-router.get('/new', guardUser, (req, res) => {
+router.get('/new', guardPage(false), (req, res) => {
     res.render('new-article')
 })
 

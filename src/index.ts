@@ -11,7 +11,7 @@ import { activeLink } from './middleware/activeLink'
 import { dateToXMagnitudeAgo } from './lib/dateUtils'
 import { eq, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
-import { guardAdmin } from './middleware/guardAdmin'
+import { guardPage } from './middleware/guardPage'
 
 // extend express Request interface to include custom properties
 declare module 'express' {
@@ -75,7 +75,7 @@ app.get('/sign-in', (req, res) => {
 app.get('/sign-up', (req, res) => {
     res.render('sign-up')
 })
-app.get('/admin-panel', guardAdmin, (req, res) => {
+app.get('/admin-panel', guardPage(true), (req, res) => {
     res.render('admin-panel')
 })
 app.use('/auth', authRoute)
