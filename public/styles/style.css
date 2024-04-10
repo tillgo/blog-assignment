@@ -1494,6 +1494,10 @@ body {
   max-width: 20rem;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 .flex-col {
   flex-direction: column;
 }

@@ -59,7 +59,7 @@
                                 {{> icons/logout }}
                             </button>
                         {{else}}
-                            <a href='/sign-in' class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Sign in
+                            <a href='/sign-in?redirectTo={{uriEscape activePath}}' class='flex items-center gap-1 text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent'>Sign in
                                 {{> icons/login }}
                             </a>
                         {{/if}}
@@ -112,7 +112,7 @@
                                     </button>
                                 {{else}}
                                     <a
-                                        href='/sign-in'
+                                        href="/sign-in?redirectTo={{uriEscape activePath}}"
                                         class='-mx-2 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent'
                                     >Sign in
                                         {{> icons/login }}

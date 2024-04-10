@@ -37,6 +37,7 @@ const hbs = create({
         toXMagnitudeAgo: dateToXMagnitudeAgo,
         eq,
         youAndAuthorIndicator,
+        uriEscape: encodeURIComponent,
     },
 })
 

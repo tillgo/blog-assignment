@@ -16,12 +16,7 @@ const handleSignIn = () => {
         },
         body: JSON.stringify({ username, password }),
     }).then(async (res) => {
-        if (res.ok) {
-            window.location = '/'
-        } else {
-            const data = await res.json()
-            handleError(data)
-        }
+        await handleResponse(res)
     })
 }
 
@@ -37,22 +32,27 @@ const handleSignUp = () => {
         },
         body: JSON.stringify({ username, password }),
     }).then(async (res) => {
-        if (res.ok) {
-            window.location = '/'
-        } else {
-            const data = await res.json()
-            handleError(data)
-        }
+        await handleResponse(res)
     })
 }
 
-const handleError = (data) => {
-    const errorLabel = document.getElementById('sign-in-error')
-    errorLabel.classList.remove('hidden')
-
-    if (data.validationErrors) {
-        errorLabel.innerText = data.validationErrors.join(',\n')
+const handleResponse = async (res) => {
+    if (res.ok) {
+        // Redirect to the page that the user was trying to access
+        const urlParams = new URLSearchParams(window.location.search)
+        const redirectTo = urlParams.get('redirectTo') ?? '/'
+        window.location = decodeURIComponent(redirectTo)
     } else {
-        errorLabel.innerText = data.message
+        // Display the error message in the sign-in form
+
+        const data = await res.json()
+        const errorLabel = document.getElementById('sign-in-error')
+        errorLabel.classList.remove('hidden')
+
+        if (data.validationErrors) {
+            errorLabel.innerText = data.validationErrors.join(',\n')
+        } else {
+            errorLabel.innerText = data.message
+        }
     }
 }

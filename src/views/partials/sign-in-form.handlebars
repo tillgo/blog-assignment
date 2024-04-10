@@ -62,7 +62,10 @@
             {{else}}
                 Don't have an account?
             {{/if}}
-            <a href='{{linkto}}' class='font-semibold leading-6 text-primary hover:brightness-75'>
+            <a
+                onclick="window.location='{{linkto}}'+window.location.search;"
+                class='cursor-pointer font-semibold leading-6 text-primary hover:brightness-75'
+            >
                 {{#if isSignUp}}
                     Sign in
                 {{else}}
