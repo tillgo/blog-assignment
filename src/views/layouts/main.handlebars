@@ -10,7 +10,7 @@
         <script src='/api/auth.js'></script>
     </head>
 
-    <body onload="setTheme()">
+    <body onload="setTheme()" class="min-h-screen">
         <div class="dark hidden underline"></div> <!-- This div is just used to load the dark theme classes -->
 
         <!-- This navbar is inspired from tailwind-ui but highly customized: https://tailwindui.com/components/marketing/elements/headers -->
@@ -67,7 +67,7 @@
                 </div>
             </nav>
             <!-- Mobile menu, show/hide based on menu open state. -->
-            <div id="mobile-menu" class='hidden' role='dialog' aria-modal='true'>
+            <div id="mobile-menu" class='hidden md:hidden' role='dialog' aria-modal='true'>
                 <div
                     class='fixed inset-y-0 right-0 z-10 w-full max-w-xs overflow-y-auto bg-background ring-1 ring-accent'
                 >
@@ -129,11 +129,15 @@
             </div>
         </header>
 
-        <main class='mx-auto flex max-w-6xl p-6 md:p-12'>
+        <main class='mx-auto flex max-w-6xl p-6 md:p-12 mb-auto'>
             {{{body}}}
         </main>
 
-        <footer class='mx-auto flex max-w-6xl justify-center'></footer>
+        <footer class='sticky top-[100vh] flex justify-center bg-background h-16 items-center border-t'>
+            <p class='mx-auto text-muted-foreground text-sm max-w-6xl'>
+                &copy; 2024 Till's Blog. All rights reserved.
+            </p>
+        </footer>
 
     </body>
 </html>
