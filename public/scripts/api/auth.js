@@ -1,5 +1,5 @@
 const handleLogout = () => {
-    fetch('/auth/logout', { method: 'DELETE' }).then(() => {
+    fetch('/api/auth/logout', { method: 'DELETE' }).then(() => {
         window.location.reload()
     })
 }
@@ -9,7 +9,7 @@ const handleSignIn = () => {
     const username = form.querySelector('#username').value
     const password = form.querySelector('#password').value
 
-    fetch('/auth/sign-in', {
+    fetch('/api/auth/sign-in', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -25,7 +25,7 @@ const handleSignUp = () => {
     const username = form.querySelector('#username').value
     const password = form.querySelector('#password').value
 
-    fetch('/auth/sign-up', {
+    fetch('/api/auth/sign-up', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

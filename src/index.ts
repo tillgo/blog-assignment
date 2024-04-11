@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 import { create } from 'express-handlebars'
 import mongoose from 'mongoose'
 import authRoute from './routes/authRoute'
-import articlesRoute from './routes/articlesRoute'
+import articlesPages from './routes/articlesPages'
 import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
 import { activeLink } from './middleware/activeLink'
@@ -12,7 +12,7 @@ import { dateToXMagnitudeAgo } from './lib/dateUtils'
 import { eq, or, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
 import { guardPage } from './middleware/guardPage'
-import articlesApi from './routes/articlesApi'
+import articlesRoute from './routes/articlesRoute'
 
 // extend express Request interface to include custom properties
 declare module 'express' {
@@ -80,9 +80,9 @@ app.get('/sign-up', (req, res) => {
 app.get('/admin-panel', guardPage(true), (req, res) => {
     res.render('admin-panel')
 })
-app.use('/auth', authRoute)
-app.use('/articles', articlesRoute)
-app.use('/api/articles', articlesApi)
+app.use('/articles', articlesPages)
+app.use('/api/auth', authRoute)
+app.use('/api/articles', articlesRoute)
 
 // handle all thrown errors with middleware
 app.use(errorHandler)
