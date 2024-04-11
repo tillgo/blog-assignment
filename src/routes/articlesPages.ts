@@ -9,9 +9,9 @@ router.get('/new', guardPage(false), (req, res) => {
     res.render('new-article')
 })
 
-// GET /articles/:id - render article details with comments
-router.get('/:id', async (req, res) => {
-    const articleId = req.params.id
+// GET /articles/:articleId - render article details with comments
+router.get('/:articleId', async (req, res) => {
+    const articleId = req.params.articleId
 
     const article = await getArticleById(articleId)
 

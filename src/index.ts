@@ -13,6 +13,7 @@ import { eq, or, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
 import { guardPage } from './middleware/guardPage'
 import articlesRoute from './routes/articlesRoute'
+import commentsRoute from './routes/commentsRoute'
 
 // extend express Request interface to include custom properties
 declare module 'express' {
@@ -83,6 +84,7 @@ app.get('/admin-panel', guardPage(true), (req, res) => {
 app.use('/articles', articlesPages)
 app.use('/api/auth', authRoute)
 app.use('/api/articles', articlesRoute)
+app.use('/api/comments', commentsRoute)
 
 // handle all thrown errors with middleware
 app.use(errorHandler)

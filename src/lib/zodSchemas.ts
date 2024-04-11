@@ -18,7 +18,7 @@ export const LoginSchema = z.object({
 })
 export type LoginData = z.infer<typeof LoginSchema>
 
-export const CreateArticleSchema = z.object({
+export const SetArticleSchema = z.object({
     title: z
         .string()
         .max(200, "Title can't be longer than 200 characters")
@@ -30,4 +30,10 @@ export const CreateArticleSchema = z.object({
     image: z.string().max(200, "Image-URL can't be longer than 200 characters").optional(),
     body: z.string(),
 })
-export type CreateArticleData = z.infer<typeof CreateArticleSchema>
+export type SetArticleData = z.infer<typeof SetArticleSchema>
+
+export const SetCommentSchema = z.object({
+    authorId: z.string(),
+    body: z.string().min(1, 'Comment must be at least 1 character long'),
+})
+export type SetCommentData = z.infer<typeof SetCommentSchema>
