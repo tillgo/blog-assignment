@@ -44,13 +44,14 @@ const handleResponse = async (res) => {
         window.location = decodeURIComponent(redirectTo)
     } else {
         const data = await res.json()
+
+        const errorLabel = document.getElementById('sign-in-error')
+        errorLabel.classList.remove('hidden')
+
         if (data.validationErrors) {
-            // Display the error message in the sign-in form
-            const errorLabel = document.getElementById('sign-in-error')
-            errorLabel.classList.remove('hidden')
             errorLabel.innerText = data.validationErrors.join(',\n')
         } else {
-            await handleError(res)
+            errorLabel.innerText = data.message ?? 'An unexpected error occurred.'
         }
     }
 }
