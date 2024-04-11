@@ -2,6 +2,7 @@
 <html lang='en'>
     <head>
         <meta charset='utf-8' />
+        <meta name="description" content="Category: Blog, Author: Till Gohl, Topic: Programming">
         <title>Till's Blog</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link href='/style.css' rel='stylesheet' />
@@ -60,7 +61,7 @@
                                 {{> icons/logout }}
                             </button>
                         {{else}}
-                            <a
+                            <button
                                 {{#if (or (eq activePath "/sign-up") (eq activePath "/sign-in"))}}
                                     onclick="window.location='/sign-in'+window.location.search;"
                                 {{else}}
@@ -118,7 +119,7 @@
                                         {{> icons/logout }}
                                     </button>
                                 {{else}}
-                                    <a
+                                    <button
                                         {{#if (or (eq activePath "/sign-up") (eq activePath "/sign-in"))}}
                                             onclick="window.location='/sign-in'+window.location.search;"
                                         {{else}}
@@ -127,7 +128,7 @@
                                         class='-mx-2 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent cursor-pointer'
                                     >Sign in
                                         {{> icons/login }}
-                                    </a>
+                                    </button>
                                 {{/if}}
                                 <div class="w-full text-sm text-primary/90 flex items-center gap-2">
                                     Toggle theme:
