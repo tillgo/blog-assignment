@@ -1,35 +1,24 @@
 import express, { Request } from 'express'
-import { guardPage } from '../middleware/guardPage'
 import { validate } from '../middleware/zodValidate'
+import { SetCommentData, SetCommentSchema } from '../lib/zodSchemas'
 import {
-    SetArticleData,
-    SetArticleSchema,
-    SetCommentData,
-    SetCommentSchema,
-    UpdateCommentData,
-    UpdateCommentSchema,
-} from '../lib/zodSchemas'
-import {
-    createArticle,
-    createComment,
     deleteComment,
     editComment,
     getArticleByComment,
-    getArticleById,
-    updateArticle,
 } from '../db/repositories/articleRepository'
 import { BadRequestProblem, ForbiddenProblem } from '../lib/errors'
+import { authorize } from '../middleware/authorize'
 
 const router = express.Router()
 
 // POST /api/comments/:commentId - create a new article
 router.put(
     '/:commentId',
-    guardPage(false),
-    validate({ body: UpdateCommentSchema }),
+    authorize(false),
+    validate({ body: SetCommentSchema }),
     async (req: Request, res) => {
         const commentId = req.params.commentId
-        const data = req.body as UpdateCommentData
+        const data = req.body as SetCommentData
 
         const article = await getArticleByComment(commentId)
         if (!article) {
@@ -39,7 +28,7 @@ router.put(
             if (!comment) {
                 throw new BadRequestProblem('Comment not found')
             } else if (req.userId !== comment.author._id.toString() && !req.isAdmin) {
-                throw new ForbiddenProblem('You are not allowed to update this comment')
+                throw new ForbiddenProblem()
             }
         }
 
@@ -49,7 +38,7 @@ router.put(
 )
 
 // DELETE /api/comments/:commentId - delete a comment
-router.delete('/:commentId', guardPage(false), async (req: Request, res) => {
+router.delete('/:commentId', authorize(false), async (req: Request, res) => {
     const commentId = req.params.commentId
 
     const article = await getArticleByComment(commentId)
@@ -60,7 +49,7 @@ router.delete('/:commentId', guardPage(false), async (req: Request, res) => {
         if (!comment) {
             throw new BadRequestProblem('Comment not found')
         } else if (req.userId !== comment.author._id.toString() && !req.isAdmin) {
-            throw new ForbiddenProblem('You are not allowed to delete this comment')
+            throw new ForbiddenProblem()
         }
     }
 

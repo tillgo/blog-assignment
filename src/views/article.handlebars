@@ -11,7 +11,7 @@
                     {{article.subtitle}}
                 </h2>
             {{/if}}
-            <div class="flex space-x-2">
+            <div class="flex gap-2 flex-wrap">
                 <h3 class='text-md'>By <b>@{{article.author.username}}</b></h3>
                 <div class='text-primary/80'>Published {{toXMagnitudeAgo article.createdAt}}</div>
             </div>
@@ -30,7 +30,6 @@
         <h2 class='text-2xl font-bold'>{{article.comments.length}} Comments</h2>
 
         <form id="comment-form" class='flex flex-col space-y-2'>
-            <input type="hidden" name="authorId" id="authorId" value="{{userId}}">
             <input type="hidden" name="articleId" id="articleId" value="{{article._id}}">
             <textarea
                 id="comment-input"

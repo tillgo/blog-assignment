@@ -7,6 +7,7 @@
         <link href='/style.css' rel='stylesheet' />
         <script src='/theme.js'></script>
         <script src='/mobile-menu.js'></script>
+        <script src='/alerts.js'></script>
         <script src='/api/auth.js'></script>
     </head>
 
@@ -148,6 +149,13 @@
                 &copy; 2024 Till's Blog. All rights reserved.
             </p>
         </footer>
+
+        <section id="alert-snack" class="hidden fixed bottom-4 right-4 bg-red-600 p-2 rounded-lg text-primary-foreground">
+            <div class="flex gap-2">
+                <span id="alert-message"></span>
+                <button id="alert-close-btn" onclick="handleCloseAlert()">{{> icons/close }}</button>
+            </div>
+        </section>
 
     </body>
 </html>

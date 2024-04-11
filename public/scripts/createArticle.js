@@ -39,7 +39,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const authorId = form.querySelector('#authorId').value
 
         const content = quill.root.innerHTML
-        console.log({ title, subtitle, category, timeToRead, image, body: content, authorId })
 
         fetch('/api/articles', {
             method: 'POST',
@@ -58,8 +57,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(async (res) => {
             if (res.ok) {
                 const data = await res.json()
-                console.log(data)
-                //window.location = `/articles/${data._id}`
+                window.location = `/articles/${data._id}`
+            } else {
+                await handleError(res)
             }
         })
     })

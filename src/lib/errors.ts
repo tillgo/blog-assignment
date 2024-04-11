@@ -24,16 +24,14 @@ export class BadRequestProblem extends ThrowableProblem {
 }
 
 export class UnauthorizedProblem extends ThrowableProblem {
-    constructor(
-        message: string = 'Unauthorized access: You need to be logged in to access this resource'
-    ) {
+    constructor(message: string = 'Unauthorized access: You need to be logged in') {
         super(message, 401)
     }
 }
 
 export class ForbiddenProblem extends ThrowableProblem {
     constructor(
-        message: string = 'Forbidden access: You do not have the necessary permissions to access this resource'
+        message: string = 'Forbidden access: You need to be an admin or the owner of this resource'
     ) {
         super(message, 403)
     }

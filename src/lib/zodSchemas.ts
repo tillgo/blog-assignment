@@ -7,7 +7,7 @@ export const LoginSchema = z.object({
     username: z
         .string()
         .describe('Username')
-        .max(50, "Username can't be longer than 50 characters")
+        .max(20, "Username can't be longer than 20 characters")
         .min(3, 'Username must be at least 3 characters long')
         .regex(/^[a-zA-Z0-9_]*$/, 'Username can only contain letters, numbers, and underscores'),
     password: z
@@ -33,12 +33,6 @@ export const SetArticleSchema = z.object({
 export type SetArticleData = z.infer<typeof SetArticleSchema>
 
 export const SetCommentSchema = z.object({
-    authorId: z.string(),
     body: z.string().min(1, 'Comment must be at least 1 character long'),
 })
 export type SetCommentData = z.infer<typeof SetCommentSchema>
-
-export const UpdateCommentSchema = z.object({
-    body: z.string().min(1, 'Comment must be at least 1 character long'),
-})
-export type UpdateCommentData = z.infer<typeof UpdateCommentSchema>

@@ -43,16 +43,14 @@ const handleResponse = async (res) => {
         const redirectTo = urlParams.get('redirectTo') ?? '/'
         window.location = decodeURIComponent(redirectTo)
     } else {
-        // Display the error message in the sign-in form
-
         const data = await res.json()
-        const errorLabel = document.getElementById('sign-in-error')
-        errorLabel.classList.remove('hidden')
-
         if (data.validationErrors) {
+            // Display the error message in the sign-in form
+            const errorLabel = document.getElementById('sign-in-error')
+            errorLabel.classList.remove('hidden')
             errorLabel.innerText = data.validationErrors.join(',\n')
         } else {
-            errorLabel.innerText = data.message
+            await handleError(res)
         }
     }
 }

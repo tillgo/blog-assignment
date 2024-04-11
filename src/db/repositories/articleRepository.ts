@@ -1,5 +1,5 @@
-import { Article, Comment, getArticleModel } from '../models/article'
-import { SetArticleData, SetCommentData, UpdateCommentData } from '../../lib/zodSchemas'
+import { Article, getArticleModel } from '../models/article'
+import { SetArticleData, SetCommentData } from '../../lib/zodSchemas'
 
 export const createArticle = async (data: SetArticleData): Promise<Article> => {
     return await new (getArticleModel())(data).save()
@@ -32,13 +32,13 @@ export const updateArticle = async (
         .exec()
 }
 
-export const createComment = async (articleId: string, data: SetCommentData) => {
+export const createComment = async (articleId: string, authorId: string, data: SetCommentData) => {
     await getArticleModel()
-        .findByIdAndUpdate(articleId, { $push: { comments: data } })
+        .findByIdAndUpdate(articleId, { $push: { comments: { ...data, authorId } } })
         .exec()
 }
 
-export const editComment = async (commentId: string, data: UpdateCommentData) => {
+export const editComment = async (commentId: string, data: SetCommentData) => {
     // construct the update operator by hand, to allow for partial updates
     const updateOperator = {
         $set: {} as Record<string, any>,

@@ -21,6 +21,8 @@ const handleEditComment = (commentId) => {
     }).then(async (res) => {
         if (res.ok) {
             window.location.reload()
+        } else {
+            await handleError(res)
         }
     })
 }
@@ -31,6 +33,8 @@ const handleDeleteComment = (commentId) => {
     }).then(async (res) => {
         if (res.ok) {
             window.location.reload()
+        } else {
+            await handleError(res)
         }
     })
 }
@@ -41,7 +45,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const form = document.getElementById('comment-form')
         const body = form.querySelector('#comment-input').value
-        const authorId = form.querySelector('#authorId').value
         const articleId = form.querySelector('#articleId').value
 
         fetch(`/api/articles/${articleId}/comments`, {
@@ -49,10 +52,12 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ authorId, body }),
+            body: JSON.stringify({ body }),
         }).then(async (res) => {
             if (res.ok) {
                 window.location.reload()
+            } else {
+                await handleError(res)
             }
         })
     })
