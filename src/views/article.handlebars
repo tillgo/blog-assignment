@@ -3,7 +3,7 @@
 <div class='mx-auto max-w-prose w-full space-y-10 md:space-y-14'>
     <article class='flex w-full flex-col space-y-8 md:space-y-10'>
         <div class='space-y-4'>
-            <h1 class='text-4xl font-extrabold text-primary/95 md:text-5xl md:leading-tight'>
+            <h1 class='text-5xl font-extrabold text-primary/95 md:text-6xl'>
                 {{article.title}}
             </h1>
             {{#if article.subtitle}}
@@ -18,7 +18,7 @@
         </div>
 
         {{#if article.image}}
-            <img src='{{article.image}}' alt='Featured image of post' class='rounded-lg w-full' />
+            <img src='{{article.image}}' title="Featured image" alt='Featured image' class='rounded-lg w-full' />
         {{/if}}
 
         <div class='prose prose-lg text-primary/95 md:prose-xl'>

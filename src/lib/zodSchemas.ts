@@ -1,9 +1,7 @@
 import { z } from 'zod'
 
-/**
- * Schema for the sign-in and sign-up form data
- */
-export const LoginSchema = z.object({
+export const SignUpSchema = z.object({
+    email: z.string().describe('Email').email('Invalid email address'),
     username: z
         .string()
         .describe('Username')
@@ -16,7 +14,13 @@ export const LoginSchema = z.object({
         .max(64, "Password can't be longer than 50 characters")
         .min(6, 'Password must be at least 6 characters long'),
 })
-export type LoginData = z.infer<typeof LoginSchema>
+export type SignUpData = z.infer<typeof SignUpSchema>
+
+export const SignInSchema = z.object({
+    email: z.string().describe('Email').email('Invalid email address'),
+    password: z.string().describe('Password'),
+})
+export type SignInData = z.infer<typeof SignInSchema>
 
 export const SetArticleSchema = z.object({
     title: z

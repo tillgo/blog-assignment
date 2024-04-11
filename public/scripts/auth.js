@@ -6,7 +6,7 @@ const handleLogout = () => {
 
 const handleSignIn = () => {
     const form = document.getElementById('sign-in-form')
-    const username = form.querySelector('#username').value
+    const email = form.querySelector('#email').value
     const password = form.querySelector('#password').value
 
     fetch('/api/auth/sign-in', {
@@ -14,7 +14,7 @@ const handleSignIn = () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, password }),
     }).then(async (res) => {
         await handleResponse(res)
     })
@@ -22,6 +22,7 @@ const handleSignIn = () => {
 
 const handleSignUp = () => {
     const form = document.getElementById('sign-up-form')
+    const email = form.querySelector('#email').value
     const username = form.querySelector('#username').value
     const password = form.querySelector('#password').value
 
@@ -30,7 +31,7 @@ const handleSignUp = () => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password }),
+        body: JSON.stringify({ email, username, password }),
     }).then(async (res) => {
         await handleResponse(res)
     })

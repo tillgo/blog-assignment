@@ -5,6 +5,7 @@ const handleCloseAlert = () => {
         clearTimeout(timeout)
         timeout = null
     }
+
     const alert = document.getElementById('alert-snack')
     alert.classList.add('hidden')
 }

@@ -1,24 +1,28 @@
 import { validate } from '../middleware/zodValidate'
 import express from 'express'
 import bcrypt from 'bcrypt'
-import { LoginData, LoginSchema } from '../lib/zodSchemas'
+import { SignUpData, SignInSchema, SignUpSchema, SignInData } from '../lib/zodSchemas'
 import { createSecretToken } from '../lib/jwtUtils'
-import { createUser, getUserByName } from '../db/repositories/userRepository'
+import { createUser, getUserByEmail } from '../db/repositories/userRepository'
 import { BadRequestProblem } from '../lib/errors'
 
 const router = express.Router()
 
 // POST /auth/sign-up - Sign up a new user
-router.post('/sign-up', validate({ body: LoginSchema }), async (req, res) => {
-    const data = req.body as LoginData
+router.post('/sign-up', validate({ body: SignUpSchema }), async (req, res) => {
+    const data = req.body as SignUpData
 
-    const existingUser = await getUserByName(data.username)
+    const existingUser = await getUserByEmail(data.email)
     if (existingUser) {
-        throw new BadRequestProblem('Username already exists')
+        throw new BadRequestProblem('This email is already in use')
     }
 
     const hash = bcrypt.hashSync(data.password, 10)
-    const user = await createUser({ username: data.username, passwordHash: hash })
+    const user = await createUser({
+        email: data.email,
+        username: data.username,
+        passwordHash: hash,
+    })
 
     const token = createSecretToken(user._id, user.isAdmin)
 
@@ -32,17 +36,17 @@ router.post('/sign-up', validate({ body: LoginSchema }), async (req, res) => {
 })
 
 // POST /auth/sign-in - Sign in a user
-router.post('/sign-in', validate({ body: LoginSchema }), async (req, res) => {
-    const data = req.body as LoginData
+router.post('/sign-in', validate({ body: SignInSchema }), async (req, res) => {
+    const data = req.body as SignInData
 
-    const user = await getUserByName(data.username)
+    const user = await getUserByEmail(data.email)
     if (!user) {
-        throw new BadRequestProblem('Incorrect username or password')
+        throw new BadRequestProblem('Incorrect email or password')
     }
 
     const isPasswordCorrect = await bcrypt.compare(data.password, user.passwordHash)
     if (!isPasswordCorrect) {
-        throw new BadRequestProblem('Incorrect username or password')
+        throw new BadRequestProblem('Incorrect email or password')
     }
 
     const token = createSecretToken(user._id, user.isAdmin)

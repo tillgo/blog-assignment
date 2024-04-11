@@ -5,6 +5,7 @@ const { String, Date: MDate } = SchemaTypes
 
 export type User = {
     _id: mongoose.Types.ObjectId
+    email: string
     username: string
     firstName?: string
     lastName?: string
@@ -18,7 +19,8 @@ export type NewUser = Omit<User, '_id' | 'createdAt' | 'isAdmin'>
 
 const SCHEMA = new mongoose.Schema(
     {
-        username: { type: String, required: true },
+        email: { type: String, required: true, unique: true },
+        username: { type: String, required: true, unique: true },
         firstName: { type: String },
         lastName: { type: String },
 

@@ -1,7 +1,7 @@
 import { getUserModel, NewUser, User } from '../models/user'
 
-export const getUserByName = async (username: string): Promise<User | null> => {
-    return await getUserModel().findOne({ username: username }).exec()
+export const getUserByEmail = async (email: string): Promise<User | null> => {
+    return await getUserModel().findOne({ email: email }).exec()
 }
 
 export const createUser = async (data: NewUser): Promise<User> => {

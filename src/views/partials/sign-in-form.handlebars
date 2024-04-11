@@ -10,10 +10,16 @@
     </div>
 
     <div class='mt-6 sm:mt-8 sm:w-full sm:max-w-sm'>
-        <form class='flex flex-col gap-3' id='{{idPrefix}}-form'>
+        <form class='flex flex-col gap-4' id='{{idPrefix}}-form'>
             <div>
-                {{> input id='username' name='username' type='text' label='Username' required=true autocomplete='username'}}
+                {{> input id='email' name='email' type='text' label='Email' required=true autocomplete='email'}}
             </div>
+
+            {{#if isSignUp}}
+                <div>
+                    {{> input id='username' name='username' type='text' label='Username' required=true autocomplete='username'}}
+                </div>
+            {{/if}}
 
             <div>
                 {{> input id='password' name='password' type='password' label='Password' required=true autocomplete='password'}}
