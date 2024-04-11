@@ -29,9 +29,12 @@
     <section class='flex flex-col gap-4'>
         <h2 class='text-2xl font-bold'>{{article.comments.length}} Comments</h2>
 
-        <form method='POST' action='/articles/comments' class='flex flex-col space-y-2'>
+        <form id="comment-form" class='flex flex-col space-y-2'>
+            <input type="hidden" name="authorId" id="authorId" value="{{userId}}">
+            <input type="hidden" name="articleId" id="articleId" value="{{article._id}}">
             <textarea
-                name='comment'
+                id="comment-input"
+                name='comment-input'
                 type='text'
                 placeholder="Add a comment..."
                 required

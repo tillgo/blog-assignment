@@ -37,3 +37,8 @@ export const SetCommentSchema = z.object({
     body: z.string().min(1, 'Comment must be at least 1 character long'),
 })
 export type SetCommentData = z.infer<typeof SetCommentSchema>
+
+export const UpdateCommentSchema = z.object({
+    body: z.string().min(1, 'Comment must be at least 1 character long'),
+})
+export type UpdateCommentData = z.infer<typeof UpdateCommentSchema>

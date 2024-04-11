@@ -30,7 +30,7 @@ router.post(
         }
 
         const article = await createArticle(data)
-        res.status(201).json({ article })
+        res.status(201).json(article)
     }
 )
 
@@ -51,7 +51,7 @@ router.put(
         }
 
         const newArticle = await updateArticle(articleId, data)
-        res.status(200).json({ article: newArticle })
+        res.status(200).json(newArticle)
     }
 )
 

@@ -58,7 +58,8 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(async (res) => {
             if (res.ok) {
                 const data = await res.json()
-                window.location = `/articles/${data._id}`
+                console.log(data)
+                //window.location = `/articles/${data._id}`
             }
         })
     })

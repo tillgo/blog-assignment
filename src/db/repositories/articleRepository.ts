@@ -1,8 +1,8 @@
-import { Article, getArticleModel } from '../models/article'
-import { SetArticleData, SetCommentData } from '../../lib/zodSchemas'
+import { Article, Comment, getArticleModel } from '../models/article'
+import { SetArticleData, SetCommentData, UpdateCommentData } from '../../lib/zodSchemas'
 
-export const createArticle = async (article: SetArticleData): Promise<Article> => {
-    return await new (getArticleModel())(article).save()
+export const createArticle = async (data: SetArticleData): Promise<Article> => {
+    return await new (getArticleModel())(data).save()
 }
 
 export const getArticleById = async (articleId: string): Promise<Article | null> => {
@@ -25,26 +25,30 @@ export const getArticleByComment = async (commentId: string): Promise<Article | 
 
 export const updateArticle = async (
     articleId: string,
-    article: SetArticleData
+    data: SetArticleData
 ): Promise<Article | null> => {
     return await getArticleModel()
-        .findByIdAndUpdate(articleId, { ...article, lastEditedAt: Date.now() }, { new: true })
+        .findByIdAndUpdate(articleId, { ...data, lastEditedAt: Date.now() }, { new: true })
         .exec()
 }
 
-export const createComment = async (articleId: string, comment: SetCommentData) => {
+export const createComment = async (articleId: string, data: SetCommentData) => {
     await getArticleModel()
-        .findByIdAndUpdate(articleId, { $push: { comments: comment } })
+        .findByIdAndUpdate(articleId, { $push: { comments: data } })
         .exec()
 }
 
-export const editComment = async (commentId: string, comment: SetCommentData) => {
-    await getArticleModel()
-        .findOneAndUpdate(
-            { 'comments._id': commentId },
-            { $push: { 'comments.$': { ...comment, lastEditedAt: Date.now() } } }
-        )
-        .exec()
+export const editComment = async (commentId: string, data: UpdateCommentData) => {
+    // construct the update operator by hand, to allow for partial updates
+    const updateOperator = {
+        $set: {} as Record<string, any>,
+    }
+    const updateData = { ...data, lastEditedAt: Date.now() } // update lastEditedAt
+    Object.entries(updateData).forEach(([key, value]) => {
+        updateOperator.$set[`comments.$.${key}`] = value
+    })
+
+    await getArticleModel().findOneAndUpdate({ 'comments._id': commentId }, updateOperator).exec()
 }
 
 export const deleteComment = async (commentId: string) => {

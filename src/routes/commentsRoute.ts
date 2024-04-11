@@ -6,6 +6,8 @@ import {
     SetArticleSchema,
     SetCommentData,
     SetCommentSchema,
+    UpdateCommentData,
+    UpdateCommentSchema,
 } from '../lib/zodSchemas'
 import {
     createArticle,
@@ -24,10 +26,10 @@ const router = express.Router()
 router.put(
     '/:commentId',
     guardPage(false),
-    validate({ body: SetCommentSchema }),
+    validate({ body: UpdateCommentSchema }),
     async (req: Request, res) => {
         const commentId = req.params.commentId
-        const data = req.body as SetCommentData
+        const data = req.body as UpdateCommentData
 
         const article = await getArticleByComment(commentId)
         if (!article) {
