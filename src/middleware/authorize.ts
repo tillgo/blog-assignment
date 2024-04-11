@@ -10,7 +10,7 @@ export const authorize =
     (admin: boolean) => async (req: Request, res: Response, next: NextFunction) => {
         if (!req.userId) {
             throw new UnauthorizedProblem()
-        } else if (!req.isAdmin) {
+        } else if (!req.isAdmin && admin) {
             throw new ForbiddenProblem()
         }
         next()

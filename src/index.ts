@@ -82,11 +82,13 @@ app.get('/admin-panel', guardPage(true), (req, res) => {
     res.render('admin-panel')
 })
 app.use('/articles', articlesPages)
+
+// setup api routes
 app.use('/api/auth', authRoute)
 app.use('/api/articles', articlesRoute)
 app.use('/api/comments', commentsRoute)
 
-// handle all thrown errors with middleware
+// handle all thrown errors with middleware at the end of the chain
 app.use(errorHandler)
 
 // start http server on specified port

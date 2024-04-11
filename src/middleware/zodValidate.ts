@@ -1,6 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import { AnyZodObject, z, ZodError } from 'zod'
-import { BadRequestProblem } from '../lib/errors'
+import { AnyZodObject, z } from 'zod'
 
 type Schema<T extends AnyZodObject, K extends AnyZodObject, J extends AnyZodObject> = {
     body?: T
@@ -8,6 +7,12 @@ type Schema<T extends AnyZodObject, K extends AnyZodObject, J extends AnyZodObje
     params?: J
 }
 
+/**
+ * Combines the given zod schemas for body, query and params into a single schema object.
+ *
+ * @param schema Zod schema to combine
+ * @returns Combined zod schema
+ */
 const createCombinedSchema = <
     T extends AnyZodObject,
     K extends AnyZodObject,
@@ -26,6 +31,8 @@ const createCombinedSchema = <
  * Middleware to validate request data using a given zod schema.
  *
  * @param schema Zod schema to validate request data
+ * @throws ZodError if the request data is invalid
+ * @returns Middleware function
  */
 export const validate =
     <T extends AnyZodObject, K extends AnyZodObject, J extends AnyZodObject>(
