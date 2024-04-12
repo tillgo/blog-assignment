@@ -27,7 +27,7 @@ router.put(
             const comment = article.comments.find((c) => c._id.toString() === commentId)
             if (!comment) {
                 throw new BadRequestProblem('Comment not found')
-            } else if (req.userId !== comment.author._id.toString() && !req.isAdmin) {
+            } else if (req.userId !== comment.authorId.toString() && !req.isAdmin) {
                 throw new ForbiddenProblem()
             }
         }
@@ -48,7 +48,7 @@ router.delete('/:commentId', authorize(false), async (req: Request, res) => {
         const comment = article.comments.find((c) => c._id.toString() === commentId)
         if (!comment) {
             throw new BadRequestProblem('Comment not found')
-        } else if (req.userId !== comment.author._id.toString() && !req.isAdmin) {
+        } else if (req.userId !== comment.authorId.toString() && !req.isAdmin) {
             throw new ForbiddenProblem()
         }
     }

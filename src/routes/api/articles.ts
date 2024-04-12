@@ -46,7 +46,7 @@ router.put(
         const article = await getArticleById(articleId)
         if (!article) {
             throw new BadRequestProblem('Article not found')
-        } else if (req.userId !== article.author._id.toString() && !req.isAdmin) {
+        } else if (req.userId !== article.authorId.toString() && !req.isAdmin) {
             throw new ForbiddenProblem()
         }
 

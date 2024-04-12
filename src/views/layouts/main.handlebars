@@ -44,7 +44,7 @@
                         {{#if userId}}
                             <a
                                 href='/blog/new'
-                                class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/articles/new" " underline "}}'
+                                class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog/new" " underline "}}'
                             >Write</a>
                         {{/if}}
                         {{#if isAdmin}}
@@ -99,8 +99,8 @@
                                 >Blog</a>
                                 {{#if userId}}
                                     <a
-                                        href='/articles/new'
-                                        class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/articles/new" " underline "}}'
+                                        href='/blog/new'
+                                        class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog/new" " underline "}}'
                                     >Write</a>
                                 {{/if}}
                                 {{#if isAdmin}}
@@ -123,7 +123,7 @@
                                         {{#if (or (eq activePath "/sign-up") (eq activePath "/sign-in"))}}
                                             onclick="window.location='/sign-in'+window.location.search;"
                                         {{else}}
-                                            onclick="window.location='/sign-in?redirectTo=+{{uriEscape activePath}}'"
+                                            onclick="window.location='/sign-in?redirectTo={{uriEscape activePath}}'"
                                         {{/if}}
                                         class='-mx-2 flex items-center gap-2 rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent cursor-pointer'
                                     >Sign in

@@ -11,7 +11,7 @@ import { NextFunction, Request, Response } from 'express'
 export const guardPage =
     (admin: boolean) => async (req: Request, res: Response, next: NextFunction) => {
         if (!req.userId) {
-            return res.redirect('/sign-in?redirectTo=' + encodeURIComponent(req.path))
+            return res.redirect('/sign-in?redirectTo=' + encodeURIComponent(req.originalUrl))
         }
         if (!req.isAdmin && admin) {
             return res.redirect('/')

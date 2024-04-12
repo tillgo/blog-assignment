@@ -2,11 +2,12 @@ import mongoose, { Model } from 'mongoose'
 import { getUserModel, User } from './user'
 
 const { SchemaTypes } = mongoose
-const { String, Date: MDate, ObjectId } = SchemaTypes
+const { String, Date: MDate, ObjectId, Number } = SchemaTypes
 
 export type Comment = {
     _id: mongoose.Types.ObjectId
-    author: User
+    authorId: mongoose.Types.ObjectId
+    author?: User
     body: string
 
     createdAt: Date
@@ -14,14 +15,15 @@ export type Comment = {
 }
 
 export type Article = {
-    _id: string
-    author: User
+    _id: mongoose.Types.ObjectId
+    authorId: mongoose.Types.ObjectId
+    author?: User
     title: string
     subtitle?: string
-    category?: string
+    tags: string[]
     timeToRead?: number
-    body: string
     image?: string
+    body: string
 
     comments: Comment[]
 
@@ -47,10 +49,10 @@ const ARTICLE_SCHEMA = new mongoose.Schema({
     authorId: { type: ObjectId, required: true, ref: getUserModel },
     title: { type: String, required: true },
     subtitle: { type: String },
-    category: { type: String },
+    tags: [{ type: String, required: true, default: [] }],
     timeToRead: { type: Number },
-    body: { type: String, required: true },
     image: { type: String },
+    body: { type: String, required: true },
 
     comments: [{ type: COMMENT_SCHEMA, required: true, default: [] }],
 

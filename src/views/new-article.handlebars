@@ -26,14 +26,14 @@
         </div>
 
         <div>
-            {{> input id='category' name='category' type='text' label='Category' required=false maxlength=50 }}
+            {{> input id='tags' name='tags' type='text' label='Tags' required=false maxlength=100 placeholder='Tag1, Tag2, ...' }}
         </div>
         <div>
-            {{> input id='timeToRead' name='timeToRead' type='number' label='Time to read' required=false placeholder='minutes' pattern='[0-9]*' numeric=true }}
+            {{> input id='timeToRead' name='timeToRead' type='number' label='Time to read' required=false placeholder='in minutes' pattern='[0-9]*' numeric=true }}
         </div>
 
         <div class='col-span-2'>
-            {{> input id='image' name='image' type='text' label='Featured image' required=false placeholder='URL' pattern='https?://.*' maxlength=200 }}
+            {{> input id='image' name='image' type='text' label='Featured Image' required=false placeholder='URL' pattern='https?://.*' maxlength=200 }}
         </div>
 
         <section class="col-span-2 mt-2">

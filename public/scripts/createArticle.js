@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const title = form.querySelector('#title').value
         const subtitle = form.querySelector('#subtitle').value || undefined
-        const category = form.querySelector('#category').value || undefined
+        const tagsString = form.querySelector('#tags').value || undefined
         const timeToRead = form.querySelector('#timeToRead').value
             ? parseInt(form.querySelector('#timeToRead').value)
             : undefined
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify({
                 title,
                 subtitle,
-                category,
+                tags: tagsString ? tagsString.split(',').map((tag) => tag.trim()) : undefined,
                 timeToRead,
                 image,
                 body: content,
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(async (res) => {
             if (res.ok) {
                 const data = await res.json()
-                window.location = `/articles/${data._id}`
+                window.location = `/blog/${data._id}`
             } else {
                 await handleError(res)
             }
