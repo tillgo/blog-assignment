@@ -1,1 +1,39 @@
-<h1 class='text-4xl font-semibold'>Home</h1>
+<div class='flex w-full flex-col gap-8 md:gap-12'>
+    <div class='grid w-full grid-cols-1 gap-6 sm:grid-cols-3 lg:grid-cols-4'>
+        <div class='flex h-full w-full justify-center'>
+            <img
+                class='h-full w-full max-w-[225px] rounded-lg object-cover sm:max-w-full'
+                src='/selfie.jpeg'
+                alt='Selfie'
+                title='Selfie'
+            />
+        </div>
+        <div class='row-start-1 flex flex-col gap-6 sm:col-span-2 sm:row-start-auto lg:col-span-3'>
+            <h1 class='text-5xl font-bold'>Moin, I'm Till</h1>
+            <p>
+                A computer science student from Germany, studying in Ireland. I'm the creator of
+                this publishing platform, where I write about the creation of this publishing
+                platform. Blog-ception!
+            </p>
+            <p>
+                Blog-ception is a platform for everyone to share their thoughts and ideas.
+                Feel free to write some articles. I'm looking forward to reading them!
+            </p>
+            <p>
+                If you have any questions or feedback, feel free to contact me via
+                <a href='mailto:till.gohl@gmx.de' class='underline'>email</a>.
+            </p>
+        </div>
+    </div>
+
+    <div class='w-full max-w-[696px] flex flex-col gap-6'>
+        <h1 class='text-4xl font-semibold'>Recent Articles</h1>
+
+        <div class='flex flex-col gap-6'>
+            {{#each articles}}
+                {{> article-preview this }}
+            {{/each}}
+        </div>
+    </div>
+
+</div>

@@ -30,7 +30,7 @@ export const getArticleById = async (articleId: string): Promise<Article | null>
  * Get an article by a comment ID
  *
  * @param commentId - The ID of the comment to search for
- * @returns All articles
+ * @returns The article containing the comment, or null if not found
  */
 export const getArticleByComment = async (commentId: string): Promise<Article | null> => {
     return await getArticleModel()
@@ -41,8 +41,21 @@ export const getArticleByComment = async (commentId: string): Promise<Article | 
         .exec()
 }
 
-export const getArticles = async (): Promise<Article[]> => {
-    return await getArticleModel().find().populate('author').lean().exec()
+/**
+ * List articles, sorted by creation date
+ * Default limit is 100.
+ *
+ * @param limit - The maximum number of articles to return
+ * @returns list of articles
+ */
+export const getArticles = async (limit: number = 100): Promise<Article[]> => {
+    return await getArticleModel()
+        .find()
+        .sort({ createdAt: -1 })
+        .limit(limit)
+        .populate('author')
+        .lean()
+        .exec()
 }
 
 /**
@@ -65,6 +78,8 @@ export const updateArticle = async (
  * Create a new comment on an article
  *
  * @param articleId - The ID of the article to delete
+ * @param authorId - The ID of the author of the comment
+ * @param data - The data for the new comment
  */
 export const createComment = async (articleId: string, authorId: string, data: SetCommentData) => {
     await getArticleModel()

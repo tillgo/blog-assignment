@@ -50,6 +50,7 @@ mongoose.connect(process.env.MONGO_URL!).then(() => {
 // expose css and js as static files
 app.use(express.static('public/styles'))
 app.use(express.static('public/scripts'))
+app.use(express.static('public/images'))
 
 // setup handlebars template engine
 app.engine('handlebars', hbs.engine)

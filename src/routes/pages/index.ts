@@ -1,11 +1,14 @@
 import express from 'express'
 import { guardPage } from '../../middleware/guardPage'
 import blogPages from './blog'
+import { getArticles } from '../../db/repositories/articleRepository'
 
 const router = express.Router()
 
-router.get('/', (req, res) => {
-    res.render('home')
+router.get('/', async (req, res) => {
+    const articles = await getArticles(10)
+
+    res.render('home', { articles })
 })
 
 router.get('/sign-in', (req, res) => {
