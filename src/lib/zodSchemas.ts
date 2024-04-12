@@ -29,9 +29,14 @@ export const SetArticleSchema = z.object({
         .min(3, 'Title must be at least 3 characters long'),
     subtitle: z.string().max(200, "Subtitle can't be longer than 200 characters").optional(),
     authorId: z.string(),
-    tags: z.array(z.string()).optional(),
+    tags: z
+        .array(z.string())
+        .optional()
+        .refine((input) => (input?.length ?? 0) <= 3, {
+            message: 'An article can have at most 3 tags',
+        }),
     timeToRead: z.number().optional(),
-    image: z.string().max(200, "Image-URL can't be longer than 200 characters").optional(),
+    image: z.string().max(500, "Image-URL can't be longer than 500 characters").optional(),
     body: z.string(),
 })
 export type SetArticleData = z.infer<typeof SetArticleSchema>

@@ -19,6 +19,11 @@ const handleError = async (response) => {
     const data = await response.json()
     const label = document.getElementById('alert-message')
     label.innerText = data.message ?? 'An unexpected error occurred.'
+    if (data.validationErrors) {
+        label.innerText = data.validationErrors.join(',\n')
+    } else {
+        label.innerText = data.message ?? 'An unexpected error occurred.'
+    }
 
     const alert = document.getElementById('alert-snack')
     alert.classList.remove('hidden')

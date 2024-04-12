@@ -19,7 +19,7 @@ export const dateToXMagnitudeAgo = (date: Date): string => {
         return `Just now`
     } else if (minutes < 60) {
         const min = Math.floor(minutes)
-        return `${min} minute${min === 1 ? '' : 's'} ago`
+        return `${min} min${min === 1 ? '' : 's'} ago`
     } else if (hours < 24) {
         const h = Math.floor(hours)
         return `${h} hour${h === 1 ? '' : 's'} ago`
@@ -36,4 +36,12 @@ export const dateToXMagnitudeAgo = (date: Date): string => {
         const y = Math.floor(years)
         return `${y} year${y === 1 ? '' : 's'} ago`
     }
+}
+
+export const formatDate = (date: Date): string => {
+    return date.toLocaleDateString('en-UK', {
+        day: 'numeric',
+        month: 'short',
+        year: 'numeric',
+    })
 }

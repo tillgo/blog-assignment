@@ -2,18 +2,33 @@
     class='grid h-auto w-full grid-cols-4 grid-rows-[1fr_auto] gap-2 sm:h-36 sm:grid-cols-4 sm:grid-rows-1 sm:gap-4'
 >
     <a href='/blog/{{_id}}' class='col-span-4 h-full w-full sm:col-span-1'>
-        <img
-            class='h-full max-h-48 w-full rounded-lg object-cover sm:max-h-36'
-            src='{{image}}'
-            alt='Featured Image'
-            title='Featured Image'
-        />
+        {{#if image}}
+            <img
+                class='h-full max-h-48 w-full rounded-lg object-cover sm:max-h-36'
+                src='{{image}}'
+                alt='Featured Image'
+                title='Featured Image'
+            />
+        {{else}}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class='p-4 h-full max-h-48 w-full bg-background rounded-lg object-cover sm:max-h-36'>
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+            </svg>
+        {{/if}}
+
     </a>
     <div class='col-span-4 flex h-auto w-full flex-col gap-0.5 sm:col-span-3'>
         <div class='flex items-center gap-1'>
             <h4 class='text-sm font-bold'>@{{author.username}}</h4>
-            <span class='h-full text-center font-bold'>·</span>
-            <div class='text-sm text-primary/80'>Published {{toXMagnitudeAgo createdAt}}</div>
+            <span class='font-bold'>·</span>
+            <div class='text-sm text-primary/80'>{{toXMagnitudeAgo createdAt}}</div>
+            <span class='font-bold'>·</span>
+            {{#each tags}}
+                {{> tag name=this href='#' }}
+            {{/each}}
         </div>
         <a href='/blog/{{_id}}' class='line-clamp-4 text-xl font-bold sm:line-clamp-2'>{{title}}
         </a>

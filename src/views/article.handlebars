@@ -13,8 +13,11 @@
             {{/if}}
             <div class="flex gap-1.5 flex-wrap items-center">
                 <h3 class='text-md'>By <b>@{{article.author.username}}</b></h3>
-                <span class='h-full text-center font-bold'>·</span>
-                <div class='text-primary/80'>Published {{toXMagnitudeAgo article.createdAt}}</div>
+                <span class='text-center'>·</span>
+                <div class='text-primary/80'>{{toXMagnitudeAgo article.createdAt}}</div>
+                {{#each article.tags}}
+                    {{> tag name=this }}
+                {{/each}}
             </div>
         </div>
 

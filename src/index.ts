@@ -6,7 +6,7 @@ import mongoose from 'mongoose'
 import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
 import { activeLink } from './middleware/activeLink'
-import { dateToXMagnitudeAgo } from './lib/dateUtils'
+import { dateToXMagnitudeAgo, formatDate } from './lib/dateUtils'
 import { eq, or, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
 import pages from './routes/pages'
@@ -34,6 +34,7 @@ const hbs = create({
     helpers: {
         styleActive,
         toXMagnitudeAgo: dateToXMagnitudeAgo,
+        formatDate: formatDate,
         eq,
         or,
         youAndAuthorIndicator,

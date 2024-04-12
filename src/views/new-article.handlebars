@@ -18,22 +18,22 @@
         <input type="hidden" id="authorId" name="authorId" value="{{userId}}">
 
         <div class='col-span-2'>
-            {{> input id='title' name='title' type='text' label='Title' required=true maxlength=200 star=true }}
+            {{> input id='title' name='title' type='text' label='Title' required=true maxlength=120 star=true }}
         </div>
 
         <div class='col-span-2'>
-            {{> input id='subtitle' name='subtitle' type='text' label='Subtitle' required=false maxlength=200 }}
+            {{> input id='subtitle' name='subtitle' type='text' label='Subtitle / Preview Text' required=false maxlength=200 }}
         </div>
 
         <div>
-            {{> input id='tags' name='tags' type='text' label='Tags' required=false maxlength=100 placeholder='Tag1, Tag2, ...' }}
+            {{> input id='tags' name='tags' type='text' label='Tags' required=false maxlength=50 placeholder='Tag1, Tag2, ...' }}
         </div>
         <div>
             {{> input id='timeToRead' name='timeToRead' type='number' label='Time to read' required=false placeholder='in minutes' pattern='[0-9]*' numeric=true }}
         </div>
 
         <div class='col-span-2'>
-            {{> input id='image' name='image' type='text' label='Featured Image' required=false placeholder='URL' pattern='https?://.*' maxlength=200 }}
+            {{> input id='image' name='image' type='text' label='Featured Image' required=false placeholder='URL' pattern='https?://.*' maxlength=500 }}
         </div>
 
         <section class="col-span-2 mt-2">
