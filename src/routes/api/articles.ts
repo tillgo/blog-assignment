@@ -1,19 +1,19 @@
 import express, { Request } from 'express'
-import { validate } from '../middleware/zodValidate'
+import { validate } from '../../middleware/zodValidate'
 import {
     SetArticleData,
     SetArticleSchema,
     SetCommentData,
     SetCommentSchema,
-} from '../lib/zodSchemas'
+} from '../../lib/zodSchemas'
 import {
     createArticle,
     createComment,
     getArticleById,
     updateArticle,
-} from '../db/repositories/articleRepository'
-import { BadRequestProblem, ForbiddenProblem } from '../lib/errors'
-import { authorize } from '../middleware/authorize'
+} from '../../db/repositories/articleRepository'
+import { BadRequestProblem, ForbiddenProblem } from '../../lib/errors'
+import { authorize } from '../../middleware/authorize'
 
 const router = express.Router()
 

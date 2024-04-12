@@ -1,13 +1,13 @@
 import express, { Request } from 'express'
-import { validate } from '../middleware/zodValidate'
-import { SetCommentData, SetCommentSchema } from '../lib/zodSchemas'
+import { validate } from '../../middleware/zodValidate'
+import { SetCommentData, SetCommentSchema } from '../../lib/zodSchemas'
 import {
     deleteComment,
     editComment,
     getArticleByComment,
-} from '../db/repositories/articleRepository'
-import { BadRequestProblem, ForbiddenProblem } from '../lib/errors'
-import { authorize } from '../middleware/authorize'
+} from '../../db/repositories/articleRepository'
+import { BadRequestProblem, ForbiddenProblem } from '../../lib/errors'
+import { authorize } from '../../middleware/authorize'
 
 const router = express.Router()
 

@@ -1,10 +1,10 @@
-import { validate } from '../middleware/zodValidate'
+import { validate } from '../../middleware/zodValidate'
 import express from 'express'
 import bcrypt from 'bcrypt'
-import { SignUpData, SignInSchema, SignUpSchema, SignInData } from '../lib/zodSchemas'
-import { createSecretToken } from '../lib/jwtUtils'
-import { createUser, getUserByEmail } from '../db/repositories/userRepository'
-import { BadRequestProblem } from '../lib/errors'
+import { SignUpData, SignInSchema, SignUpSchema, SignInData } from '../../lib/zodSchemas'
+import { createSecretToken } from '../../lib/jwtUtils'
+import { createUser, getUserByEmail } from '../../db/repositories/userRepository'
+import { BadRequestProblem } from '../../lib/errors'
 
 const router = express.Router()
 

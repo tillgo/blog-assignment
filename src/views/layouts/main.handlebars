@@ -37,9 +37,13 @@
                             href='/'
                             class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/" " underline "}}'
                         >Home</a>
+                        <a
+                            href='/blog'
+                            class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog" " underline "}}'
+                        >Blog</a>
                         {{#if userId}}
                             <a
-                                href='/articles/new'
+                                href='/blog/new'
                                 class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/articles/new" " underline "}}'
                             >Write</a>
                         {{/if}}
@@ -49,10 +53,6 @@
                                 class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/admin-panel" " underline "}}'
                             >Admin-Panel</a>
                         {{/if}}
-                        <a
-                            href='/about'
-                            class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/about" " underline "}}'
-                        >About</a>
                     </div>
                     <div class='hidden md:flex md:justify-end md:gap-x-4 md:items-center'>
                         {{> theme-toggle }}
@@ -93,6 +93,10 @@
                                     href='/'
                                     class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/" " underline "}}'
                                 >Home</a>
+                                <a
+                                    href='/blog'
+                                    class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog" " underline "}}'
+                                >Blog</a>
                                 {{#if userId}}
                                     <a
                                         href='/articles/new'
@@ -105,10 +109,6 @@
                                         class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/admin-panel" " underline "}}'
                                     >Admin-Panel</a>
                                 {{/if}}
-                                <a
-                                    href='/about'
-                                    class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/about" " underline "}}'
-                                >About</a>
                             </div>
                             <div class='py-6 flex flex-col space-y-2'>
                                 {{#if userId}}

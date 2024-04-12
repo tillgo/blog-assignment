@@ -3,17 +3,14 @@ import express from 'express'
 import dotenv from 'dotenv'
 import { create } from 'express-handlebars'
 import mongoose from 'mongoose'
-import authRoute from './routes/authRoute'
-import articlesPages from './routes/articlesPages'
 import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
 import { activeLink } from './middleware/activeLink'
 import { dateToXMagnitudeAgo } from './lib/dateUtils'
 import { eq, or, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
-import { guardPage } from './middleware/guardPage'
-import articlesRoute from './routes/articlesRoute'
-import commentsRoute from './routes/commentsRoute'
+import pages from './routes/pages'
+import api from './routes/api'
 
 // extend express Request interface to include custom properties
 declare module 'express' {
@@ -65,28 +62,10 @@ app.use(cookieParser())
 app.use(authenticate)
 app.use(activeLink)
 
-// setup routes
-app.get('/', (req, res) => {
-    res.render('home')
-})
-app.get('/about', (req, res) => {
-    res.render('about')
-})
-app.get('/sign-in', (req, res) => {
-    res.render('sign-in')
-})
-app.get('/sign-up', (req, res) => {
-    res.render('sign-up')
-})
-app.get('/admin-panel', guardPage(true), (req, res) => {
-    res.render('admin-panel')
-})
-app.use('/articles', articlesPages)
-
+// setup pages routes
+app.use('/', pages)
 // setup api routes
-app.use('/api/auth', authRoute)
-app.use('/api/articles', articlesRoute)
-app.use('/api/comments', commentsRoute)
+app.use('/api', api)
 
 // handle all thrown errors with middleware at the end of the chain
 app.use(errorHandler)
