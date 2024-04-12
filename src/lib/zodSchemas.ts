@@ -35,7 +35,7 @@ export const SetArticleSchema = z.object({
         .refine((input) => (input?.length ?? 0) <= 3, {
             message: 'An article can have at most 3 tags',
         }),
-    timeToRead: z.number().optional(),
+    timeToRead: z.number().min(1, 'Time to read must be at least 1 minute').optional(),
     image: z.string().max(500, "Image-URL can't be longer than 500 characters").optional(),
     body: z.string(),
 })

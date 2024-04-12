@@ -1548,6 +1548,11 @@ body {
   height: 0.875rem;
 }
 
+.h-fit {
+  height: -moz-fit-content;
+  height: fit-content;
+}
+
 .max-h-48 {
   max-height: 12rem;
 }
@@ -2155,6 +2160,10 @@ body {
     max-height: 7rem;
   }
 
+  .sm\:min-h-36 {
+    min-height: 9rem;
+  }
+
   .sm\:w-full {
     width: 100%;
   }
@@ -2169,6 +2178,10 @@ body {
 
   .sm\:grid-rows-1 {
     grid-template-rows: repeat(1, minmax(0, 1fr));
+  }
+
+  .sm\:grid-rows-\[auto\] {
+    grid-template-rows: auto;
   }
 
   .sm\:gap-4 {
