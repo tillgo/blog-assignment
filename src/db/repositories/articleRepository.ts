@@ -41,6 +41,10 @@ export const getArticleByComment = async (commentId: string): Promise<Article | 
         .exec()
 }
 
+export const getArticles = async (): Promise<Article[]> => {
+    return await getArticleModel().find().populate('author').lean().exec()
+}
+
 /**
  * Update an article
  *

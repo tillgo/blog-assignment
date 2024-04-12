@@ -25,11 +25,11 @@ export type SignInData = z.infer<typeof SignInSchema>
 export const SetArticleSchema = z.object({
     title: z
         .string()
-        .max(200, "Title can't be longer than 200 characters")
+        .max(120, "Title can't be longer than 120 characters")
         .min(3, 'Title must be at least 3 characters long'),
     subtitle: z.string().max(200, "Subtitle can't be longer than 200 characters").optional(),
     authorId: z.string(),
-    category: z.string().max(50, "Category can't be longer than 50 characters").optional(),
+    tags: z.array(z.string()).optional(),
     timeToRead: z.number().optional(),
     image: z.string().max(200, "Image-URL can't be longer than 200 characters").optional(),
     body: z.string(),

@@ -1,12 +1,14 @@
-import express from 'express'
+import express, { Request } from 'express'
 import { guardPage } from '../../middleware/guardPage'
-import { getArticleById } from '../../db/repositories/articleRepository'
+import { getArticleById, getArticles } from '../../db/repositories/articleRepository'
 
 const router = express.Router()
 
 // GET / - render blog page
-router.get('/', (req, res) => {
-    res.render('blog')
+router.get('/', async (req: Request, res) => {
+    const articles = await getArticles()
+
+    res.render('blog', { articles })
 })
 
 // GET /blog/new - render new article form
