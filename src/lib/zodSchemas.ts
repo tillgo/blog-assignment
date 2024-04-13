@@ -45,3 +45,10 @@ export const SetCommentSchema = z.object({
     body: z.string().min(1, 'Comment must be at least 1 character long'),
 })
 export type SetCommentData = z.infer<typeof SetCommentSchema>
+
+export const SearchArticlesFilterSchema = z.object({
+    search: z.string().optional(),
+    author: z.string().optional(),
+    tag: z.string().optional(),
+})
+export type SearchArticlesFilterData = z.infer<typeof SearchArticlesFilterSchema>

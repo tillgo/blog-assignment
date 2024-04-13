@@ -1,5 +1,8 @@
 import { Article, getArticleModel } from '../models/article'
-import { SetArticleData, SetCommentData } from '../../lib/zodSchemas'
+import { SearchArticlesFilterData, SetArticleData, SetCommentData } from '../../lib/zodSchemas'
+import { getUserModel, User } from '../models/user'
+import { PipelineStage } from 'mongoose'
+import { escapeForRegex } from '../../lib/regexUtils'
 
 /**
  * Create a new article
@@ -46,11 +49,25 @@ export const getArticleByComment = async (commentId: string): Promise<Article | 
  * Default limit is 100.
  *
  * @param limit - The maximum number of articles to return
+ * @param filter - The filter to apply to the search
+ * @param possibleAuthors - A list of possible authors for filtering
  * @returns list of articles
  */
-export const getArticles = async (limit: number = 100): Promise<Article[]> => {
+export const getArticles = async (
+    limit: number = 100,
+    filter?: SearchArticlesFilterData,
+    possibleAuthors: User[] = []
+): Promise<Article[]> => {
+    const search = new RegExp(escapeForRegex(filter?.search), 'i')
+    const tag = new RegExp(escapeForRegex(filter?.tag), 'i')
+
     return await getArticleModel()
-        .find()
+        .find({
+            title: { $regex: search },
+            tags: { $regex: tag },
+
+            authorId: { $in: possibleAuthors.map((author) => author._id) },
+        })
         .sort({ createdAt: -1 })
         .limit(limit)
         .populate('author')

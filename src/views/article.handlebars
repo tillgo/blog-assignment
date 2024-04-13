@@ -28,12 +28,12 @@
                     </div>
                 {{/if}}
                 {{#if (mayEdit userId article.author._id isAdmin)}}
-                    <div class="flex justify-end gap-2 flex-wrap w-full">
+                    <div class="flex justify-end gap-2 flex-wrap w-full mt-1">
                         <a
                             href="/blog/{{article._id}}/edit"
                             class='h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
                         >
-                            Edit{{> icons/edit size='4' }}
+                            Edit Article{{> icons/edit size='4' }}
                         </a>
                         <button
                             type='button'

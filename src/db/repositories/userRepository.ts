@@ -1,4 +1,5 @@
 import { getUserModel, NewUser, User } from '../models/user'
+import { escapeForRegex } from '../../lib/regexUtils'
 
 /**
  * Get a user by email
@@ -18,4 +19,13 @@ export const getUserByEmail = async (email: string): Promise<User | null> => {
  */
 export const createUser = async (data: NewUser): Promise<User> => {
     return await new (getUserModel())(data).save()
+}
+
+export const findAuthorsByFilter = async (search: string | undefined): Promise<User[]> => {
+    const pattern = new RegExp(escapeForRegex(search), 'i')
+    return await getUserModel()
+        .find({
+            $or: [{ username: { $regex: pattern } }, { email: search }],
+        })
+        .exec()
 }
