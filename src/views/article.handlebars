@@ -3,11 +3,11 @@
 <div class='mx-auto max-w-prose w-full space-y-10 md:space-y-14'>
     <article class='flex w-full flex-col space-y-8 md:space-y-10'>
         <div class='space-y-4'>
-            <h1 class='text-4xl font-extrabold text-primary/95 md:text-5xl md:leading-tight'>
+            <h1 class='text-4xl font-extrabold md:text-5xl md:leading-tight break-words'>
                 {{article.title}}
             </h1>
             {{#if article.subtitle}}
-                <h2 class='text-lg font-semibold text-primary/60 md:text-xl'>
+                <h2 class='text-lg font-semibold text-primary/60 md:text-xl break-words'>
                     {{article.subtitle}}
                 </h2>
             {{/if}}
@@ -27,10 +27,10 @@
         </div>
 
         {{#if article.image}}
-            <img src='{{article.image}}' title="Featured image" alt='Featured image' class='rounded-lg w-full' />
+            <img src='{{article.image}}' title="Featured image" alt='Featured image' class='rounded-lg w-full max-h-[500px]' />
         {{/if}}
 
-        <div class='prose prose-lg text-primary/95'>
+        <div class='prose prose-neutral prose-lg dark:prose-invert prose-h1:text-3xl prose-headings:mt-5 prose-headings:mb-1.5 prose-h2:text-2xl prose-h3:text-xl prose-p:my-1.5 prose-ul:my-1.5 prose-ol:my-1.5 prose-li:my-0 prose-blockquote:my-5 break-words prose-img:rounded-lg prose-img:my-3 prose-a:text-blue-500'>
             {{{article.body}}}
         </div>
     </article>

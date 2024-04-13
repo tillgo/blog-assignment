@@ -4,11 +4,10 @@ document.addEventListener('DOMContentLoaded', function () {
         [{ header: [1, 2, 3, false] }],
 
         ['bold', 'italic', 'underline', 'strike'],
-        ['blockquote', 'code-block'],
+        ['blockquote'],
         ['link', 'image'],
 
-        [{ list: 'ordered' }, { list: 'bullet' }, { list: 'check' }],
-        [{ indent: '-1' }, { indent: '+1' }],
+        [{ list: 'ordered' }],
     ]
     quill = new Quill('#editor', {
         theme: 'snow',
@@ -29,6 +28,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const form = document.getElementById('new-article-form')
 
+        const isEdit = form.querySelector('#isEdit').value === 'true'
+        const articleId = form.querySelector('#articleId').value
+
         const title = form.querySelector('#title').value
         const subtitle = form.querySelector('#subtitle').value || undefined
         const tagsString = form.querySelector('#tags').value || undefined
@@ -40,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const content = quill.root.innerHTML
 
-        fetch('/api/articles', {
-            method: 'POST',
+        fetch(`/api/articles${isEdit && `/${articleId}`}`, {
+            method: isEdit ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },

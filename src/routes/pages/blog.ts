@@ -13,7 +13,7 @@ router.get('/', async (req: Request, res) => {
 
 // GET /blog/new - render new article form
 router.get('/new', guardPage(false), (req, res) => {
-    res.render('new-article')
+    res.render('edit-article')
 })
 
 // GET /blog/:articleId - render article details with comments
@@ -28,6 +28,24 @@ router.get('/:articleId', async (req, res) => {
 
     res.render('article', {
         article: article,
+    })
+})
+
+// GET /blog/:articleId/edit - render edit article form
+router.get('/:articleId/edit', guardPage(false), async (req: Request, res) => {
+    const articleId = req.params.articleId
+
+    const article = await getArticleById(articleId)
+
+    if (!article) {
+        res.redirect('/')
+    } else if (req.userId !== article.authorId.toString() && !req.isAdmin) {
+        res.redirect('/') // maybe handle this differently in the future
+    }
+
+    res.render('edit-article', {
+        article,
+        isEdit: true,
     })
 })
 

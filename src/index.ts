@@ -7,10 +7,12 @@ import { authenticate } from './middleware/authenticate'
 import cookieParser from 'cookie-parser'
 import { activeLink } from './middleware/activeLink'
 import { dateToXMagnitudeAgo, formatDate } from './lib/dateUtils'
-import { eq, or, styleActive, youAndAuthorIndicator } from './lib/hbsHelpers'
+import { eq, or, styleActive, youAndAuthorIndicator, join } from './lib/hbsHelpers'
 import { errorHandler } from './middleware/errorHandler'
 import pages from './routes/pages'
 import api from './routes/api'
+import { util } from 'zod'
+import joinValues = util.joinValues
 
 // extend express Request interface to include custom properties
 declare module 'express' {
@@ -39,6 +41,7 @@ const hbs = create({
         or,
         youAndAuthorIndicator,
         uriEscape: encodeURIComponent,
+        join: join,
     },
 })
 

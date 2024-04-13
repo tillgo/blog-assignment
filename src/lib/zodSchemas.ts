@@ -27,7 +27,7 @@ export const SetArticleSchema = z.object({
         .string()
         .max(120, "Title can't be longer than 120 characters")
         .min(3, 'Title must be at least 3 characters long'),
-    subtitle: z.string().max(200, "Subtitle can't be longer than 200 characters").optional(),
+    subtitle: z.string().max(200, "Subtitle can't be longer than 200 characters"),
     authorId: z.string(),
     tags: z
         .array(z.string())

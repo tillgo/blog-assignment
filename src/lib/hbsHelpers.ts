@@ -43,3 +43,5 @@ export const youAndAuthorIndicator = (
 ) => {
     return userId === commentAuthorId ? ' (you)' : authorId === commentAuthorId ? ' (author)' : ''
 }
+
+export const join = (arr: string[]) => arr.join(', ')
