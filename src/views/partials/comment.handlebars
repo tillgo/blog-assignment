@@ -2,7 +2,7 @@
     <div class='flex gap-2 items-center flex-wrap'>
         <h3 class='font-bold'>@{{author.username}}{{youAndAuthorIndicator userId articleAuthorId author._id}}</h3>
         <div class='text-primary/80'>{{toXMagnitudeAgo createdAt}}</div>
-        {{#if (eq author._id userId)}}
+        {{#if (mayEdit userId author._id isAdmin)}}
             <div class="flex gap-2">
                 <button
                     type='button'

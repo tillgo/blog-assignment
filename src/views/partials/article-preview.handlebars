@@ -29,12 +29,14 @@
                 <span class='font-bold'>·</span>
                 <div class='text-sm text-primary/80'>{{timeToRead}} min read</div>
             {{/if}}
-            <span class='font-bold'>·</span>
-            <div class="flex flex-wrap gap-1">
-                {{#each tags}}
-                    {{> tag name=this href='#' }}
-                {{/each}}
-            </div>
+            {{#if tags.length}}
+                <span class='font-bold'>·</span>
+                <div class="flex flex-wrap gap-1">
+                    {{#each tags}}
+                        {{> tag name=this href='#' }}
+                    {{/each}}
+                </div>
+            {{/if}}
         </div>
         <a href='/blog/{{_id}}' class='line-clamp-4 text-xl font-bold sm:line-clamp-2'>{{title}}
         </a>

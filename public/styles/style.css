@@ -1548,6 +1548,10 @@ body {
   margin-bottom: 0.125rem;
 }
 
+.-mt-4 {
+  margin-top: -1rem;
+}
+
 .line-clamp-4 {
   overflow: hidden;
   display: -webkit-box;
@@ -1611,6 +1615,10 @@ body {
   height: 100%;
 }
 
+.h-4 {
+  height: 1rem;
+}
+
 .max-h-48 {
   max-height: 12rem;
 }
@@ -1653,6 +1661,10 @@ body {
 
 .w-full {
   width: 100%;
+}
+
+.w-4 {
+  width: 1rem;
 }
 
 .max-w-6xl {
@@ -1705,6 +1717,10 @@ body {
 
 .items-center {
   align-items: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
 }
 
 .justify-center {

@@ -6,8 +6,8 @@ import {
     editComment,
     getArticleByComment,
 } from '../../db/repositories/articleRepository'
-import { BadRequestProblem, ForbiddenProblem } from '../../lib/errors'
 import { authorize } from '../../middleware/authorize'
+import { guardEditComment } from '../../lib/guard'
 
 const router = express.Router()
 
@@ -21,16 +21,7 @@ router.put(
         const data = req.body as SetCommentData
 
         const article = await getArticleByComment(commentId)
-        if (!article) {
-            throw new BadRequestProblem('Article / Comment not found')
-        } else {
-            const comment = article.comments.find((c) => c._id.toString() === commentId)
-            if (!comment) {
-                throw new BadRequestProblem('Comment not found')
-            } else if (req.userId !== comment.authorId.toString() && !req.isAdmin) {
-                throw new ForbiddenProblem()
-            }
-        }
+        guardEditComment(req, article, commentId)
 
         await editComment(commentId, data)
         res.status(200).json({ message: 'Comment edited' })
@@ -42,16 +33,7 @@ router.delete('/:commentId', authorize(false), async (req: Request, res) => {
     const commentId = req.params.commentId
 
     const article = await getArticleByComment(commentId)
-    if (!article) {
-        throw new BadRequestProblem('Article / Comment not found')
-    } else {
-        const comment = article.comments.find((c) => c._id.toString() === commentId)
-        if (!comment) {
-            throw new BadRequestProblem('Comment not found')
-        } else if (req.userId !== comment.authorId.toString() && !req.isAdmin) {
-            throw new ForbiddenProblem()
-        }
-    }
+    guardEditComment(req, article, commentId)
 
     await deleteComment(commentId)
     res.status(200).json({ message: 'Comment deleted' })

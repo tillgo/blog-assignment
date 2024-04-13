@@ -75,6 +75,15 @@ export const updateArticle = async (
 }
 
 /**
+ * Delete an article
+ *
+ * @param articleId - The ID of the article to delete
+ */
+export const deleteArticle = async (articleId: string) => {
+    return await getArticleModel().findByIdAndDelete(articleId).exec()
+}
+
+/**
  * Create a new comment on an article
  *
  * @param articleId - The ID of the article to delete

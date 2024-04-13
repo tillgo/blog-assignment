@@ -44,4 +44,10 @@ export const youAndAuthorIndicator = (
     return userId === commentAuthorId ? ' (you)' : authorId === commentAuthorId ? ' (author)' : ''
 }
 
-export const join = (arr: string[]) => arr.join(', ')
+/**
+ * Helper function to join an array of strings
+ *
+ * @param arr The array of strings to join
+ * @returns The joined string
+ */
+export const join = (arr: string[] | undefined) => (arr ? arr.join(', ') : '')

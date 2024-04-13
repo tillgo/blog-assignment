@@ -13,16 +13,27 @@
                     New Article
                 {{/if}}
             </h1>
-            <button
-                type='submit'
-                class='inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-            >
+            <div>
                 {{#if article}}
-                    Update Article
-                {{else}}
-                    Publish Article
+                    <button
+                        type='button'
+                        onclick="handleDeleteArticle('{{article._id}}')"
+                        class='h-10 px-4 py-2 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90'
+                    >
+                        Delete Article
+                    </button>
                 {{/if}}
-            </button>
+                <button
+                    type='submit'
+                    class='inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                >
+                    {{#if article}}
+                        Update Article
+                    {{else}}
+                        Publish Article
+                    {{/if}}
+                </button>
+            </div>
         </div>
 
         <input type="hidden" id="authorId" name="authorId" value="{{#if article}}{{article.authorId}}{{else}}{{userId}}{{/if}}">
@@ -51,7 +62,7 @@
         <section class="col-span-2 mt-2">
             <label for="editor" class="block text-sm font-medium leading-6 mb-1">Content<span
                 class="text-red-600">*</span></label>
-            <h4 class="text-xs mb-0.5">Please note: The preview in this editor may look different to the final article (e.g. spacing, images, ...)</h4>
+            <h4 class="text-xs mb-0.5">Please note: The preview in this editor may look different to the final article (e.g. font sizes, spacing, images, ...)</h4>
             <div id="editor">{{{article.body}}}</div>
         </section>
     </form>

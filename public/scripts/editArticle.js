@@ -42,7 +42,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const content = quill.root.innerHTML
 
-        fetch(`/api/articles${isEdit && `/${articleId}`}`, {
+        console.log({
+            title,
+            subtitle,
+            tags: tagsString ? tagsString.split(',').map((tag) => tag.trim()) : undefined,
+            timeToRead,
+            image,
+            body: content,
+            authorId,
+        })
+
+        fetch(`/api/articles${isEdit ? `/${articleId}` : ''}`, {
             method: isEdit ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json',

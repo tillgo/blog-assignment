@@ -11,8 +11,7 @@ import { eq, or, styleActive, youAndAuthorIndicator, join } from './lib/hbsHelpe
 import { errorHandler } from './middleware/errorHandler'
 import pages from './routes/pages'
 import api from './routes/api'
-import { util } from 'zod'
-import joinValues = util.joinValues
+import { mayEdit } from './lib/guard'
 
 // extend express Request interface to include custom properties
 declare module 'express' {
@@ -42,6 +41,7 @@ const hbs = create({
         youAndAuthorIndicator,
         uriEscape: encodeURIComponent,
         join: join,
+        mayEdit: mayEdit,
     },
 })
 

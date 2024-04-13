@@ -9,11 +9,13 @@ import {
 import {
     createArticle,
     createComment,
+    deleteArticle,
     getArticleById,
     updateArticle,
 } from '../../db/repositories/articleRepository'
-import { BadRequestProblem, ForbiddenProblem } from '../../lib/errors'
+import { ForbiddenProblem } from '../../lib/errors'
 import { authorize } from '../../middleware/authorize'
+import { guardEditArticle, mayEdit } from '../../lib/guard'
 
 const router = express.Router()
 
@@ -25,7 +27,7 @@ router.post(
     async (req: Request, res) => {
         const data = req.body as SetArticleData
 
-        if (req.userId !== data.authorId && !req.isAdmin) {
+        if (!mayEdit(req.userId!, data.authorId, req.isAdmin!)) {
             throw new ForbiddenProblem()
         }
 
@@ -44,16 +46,23 @@ router.put(
         const articleId = req.params.articleId
 
         const article = await getArticleById(articleId)
-        if (!article) {
-            throw new BadRequestProblem('Article not found')
-        } else if (req.userId !== article.authorId.toString() && !req.isAdmin) {
-            throw new ForbiddenProblem()
-        }
+        guardEditArticle(req, article)
 
         const newArticle = await updateArticle(articleId, data)
         res.status(200).json(newArticle)
     }
 )
+
+// DELETE /api/articles/:articleId - delete an article
+router.delete('/:articleId', authorize(false), async (req: Request, res) => {
+    const articleId = req.params.articleId
+
+    const article = await getArticleById(articleId)
+    guardEditArticle(req, article)
+
+    await deleteArticle(articleId)
+    res.status(200).json({ message: 'Article deleted' })
+})
 
 // POST /api/articles/:articleId/comments - create a new comment
 router.post(
