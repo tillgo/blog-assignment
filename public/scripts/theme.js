@@ -1,8 +1,3 @@
-const setTheme = () => {
-    const currentTheme = getTheme()
-    document.body.classList.add(currentTheme)
-}
-
 const handleThemeToggle = () => {
     const currentTheme = getTheme()
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
@@ -18,3 +13,9 @@ const getTheme = () => {
         : 'light'
     return localStorage.getItem('theme') ?? systemPreference
 }
+
+// set dark mode on page load
+document.addEventListener('DOMContentLoaded', () => {
+    const currentTheme = getTheme()
+    document.body.classList.add(currentTheme)
+})

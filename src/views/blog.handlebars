@@ -1,4 +1,4 @@
-<div class='flex flex-col gap-8 md:gap-12 w-full'>
+<div class='flex flex-col gap-10 md:gap-12 w-full'>
     <div class='flex justify-between'>
         <h1 class='text-4xl font-semibold'>All Articles</h1>
         <a
@@ -9,11 +9,11 @@
         </a>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <section class='row-start-1 lg:col-start-3'>
             Search Options
         </section>
-        <div class='flex flex-col gap-6 col-span-1 lg:col-span-2'>
+        <div class='flex flex-col gap-8 col-span-1 lg:col-span-2'>
 
             {{#each articles}}
                 {{> article-preview this }}

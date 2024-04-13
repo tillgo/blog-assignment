@@ -13,7 +13,7 @@
         <script src='/deleteArticle.js'></script>
     </head>
 
-    <body onload="setTheme()" class="min-h-screen">
+    <body class="min-h-screen">
         <div class="dark hidden underline"></div> <!-- This div is just used to load the dark theme classes -->
 
         <!-- This navbar is inspired from tailwind-ui but highly customized: https://tailwindui.com/components/marketing/elements/headers -->
@@ -42,12 +42,10 @@
                             href='/blog'
                             class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog" " underline "}}'
                         >Blog</a>
-                        {{#if userId}}
-                            <a
-                                href='/blog/new'
-                                class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog/new" " underline "}}'
-                            >Write</a>
-                        {{/if}}
+                        <a
+                            href='/blog/new'
+                            class='text-md rounded-lg p-2 font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog/new" " underline "}}'
+                        >Write</a>
                         {{#if isAdmin}}
                             <a
                                 href='/admin-panel'
