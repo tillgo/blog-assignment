@@ -17,7 +17,6 @@ router.get('/', validate({ query: SearchArticlesFilterSchema }), async (req: Req
             ? decodeURIComponent(value)
             : undefined
     })
-    console.log(filters)
 
     const possibleAuthors = await findAuthorsByFilter(filters.author)
     const articles = await getArticles(100, filters, possibleAuthors)

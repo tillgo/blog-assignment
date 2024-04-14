@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "build": "npx tsc",
+        "build": "npx tsc && gulp",
         "start": "node dist/index.js",
         "dev": "concurrently \"npm run tailwind-watch\" \"nodemon src/index.ts -e ts,json,handlebars,css,html\"",
         "tailwind": "postcss public/styles/tailwind.css -o public/styles/style.css",
@@ -32,6 +32,8 @@
         "@types/jsonwebtoken": "^9.0.6",
         "@types/node": "^20.11.30",
         "concurrently": "^8.2.2",
+        "gulp": "^5.0.0",
+        "gulp-clean": "^0.4.0",
         "nodemon": "^3.1.0",
         "prettier": "^3.2.5",
         "prettier-plugin-tailwindcss": "^0.5.13",

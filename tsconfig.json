@@ -104,6 +104,14 @@
 
         /* Completeness */
         // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
-        "skipLibCheck": true /* Skip type checking all .d.ts files. */
-    }
+        "skipLibCheck": true, /* Skip type checking all .d.ts files. */
+    },
+    "include": ["src"],
+    "copyFiles": [
+        {  // This object defines a copy rule
+            "from": "src/**/*.handlebars",  // Source folder and file pattern
+            "to": "dist/",                   // Destination folder
+            "context": "./src"                // Optional: Base directory for relative paths
+        }
+    ]
 }

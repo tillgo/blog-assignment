@@ -1,1 +1,3 @@
-# blog-assignment
+# NodeJS + Express Assignment - Blog Publishing Platform
+
+
