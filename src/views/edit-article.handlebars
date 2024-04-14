@@ -48,12 +48,10 @@
             {{> input id='subtitle' name='subtitle' type='text' label='Subtitle / Preview Text' required=true star=true maxlength=200 value=article.subtitle }}
         </div>
 
-        <div>
-            {{> input id='tags' name='tags' type='text' label='Tags' required=false maxlength=50 placeholder='Tag1, Tag2, ...' value=(join article.tags) }}
-        </div>
-        <div>
-            {{> input id='timeToRead' name='timeToRead' type='number' label='Time to read' required=false placeholder='in minutes' pattern='[0-9]*' numeric=true value=article.timeToRead }}
-        </div>
+        {{> input id='tags' name='tags' type='text' label='Tags' required=false maxlength=50 placeholder='Tag1, Tag2, ...' value=(join article.tags) }}
+
+        {{> input id='timeToRead' name='timeToRead' type='number' label='Time to read' required=false placeholder='in minutes' pattern='[0-9]*' numeric=true value=article.timeToRead }}
+
 
         <div class='col-span-2'>
             {{> input id='image' name='image' type='text' label='Featured Image' required=false placeholder='URL' pattern='https?://.*' maxlength=500 value=article.image }}

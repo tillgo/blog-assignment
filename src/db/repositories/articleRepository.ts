@@ -1,7 +1,7 @@
-import { Article, getArticleModel } from '../models/article'
+import { Article, ArticleDocument, getArticleModel } from '../models/article'
 import { SearchArticlesFilterData, SetArticleData, SetCommentData } from '../../lib/zodSchemas'
 import { getUserModel, User } from '../models/user'
-import { PipelineStage } from 'mongoose'
+import { FilterQuery, PipelineStage } from 'mongoose'
 import { escapeForRegex } from '../../lib/regexUtils'
 
 /**
@@ -51,28 +51,47 @@ export const getArticleByComment = async (commentId: string): Promise<Article | 
  * @param limit - The maximum number of articles to return
  * @param filter - The filter to apply to the search
  * @param possibleAuthors - A list of possible authors for filtering
+ * @param createdAfter - The date to filter articles created after
  * @returns list of articles
  */
 export const getArticles = async (
-    limit: number = 100,
+    limit: number = 0, // default limit is unlimited
     filter?: SearchArticlesFilterData,
-    possibleAuthors: User[] = []
+    possibleAuthors?: User[],
+    createdAfter?: Date
 ): Promise<Article[]> => {
-    const search = new RegExp(escapeForRegex(filter?.search), 'i')
-    const tag = new RegExp(escapeForRegex(filter?.tag), 'i')
+    const filterQuery = {} as FilterQuery<ArticleDocument>
+
+    if (filter) {
+        const search = new RegExp(escapeForRegex(filter?.search), 'i')
+        const tag = new RegExp(escapeForRegex(filter?.tag), 'i')
+
+        filterQuery.title = { $regex: search }
+        filterQuery.tags = { $regex: tag }
+    }
+    if (possibleAuthors) {
+        filterQuery.authorId = { $in: possibleAuthors.map((author) => author._id) }
+    }
+    if (createdAfter) {
+        filterQuery.createdAt = { $gte: createdAfter }
+    }
 
     return await getArticleModel()
-        .find({
-            title: { $regex: search },
-            tags: { $regex: tag },
-
-            authorId: { $in: possibleAuthors.map((author) => author._id) },
-        })
+        .find(filterQuery)
         .sort({ createdAt: -1 })
         .limit(limit)
         .populate('author')
         .lean()
         .exec()
+}
+
+/**
+ * Delete all articles for a user
+ * @param userId - The ID of the user to delete articles for
+ * @returns The number of articles deleted
+ */
+export const deleteArticlesForUser = async (userId: string) => {
+    return await getArticleModel().deleteMany({ authorId: userId }).exec()
 }
 
 /**

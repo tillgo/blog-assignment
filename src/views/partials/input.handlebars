@@ -1,5 +1,9 @@
-<label for='{{id}}' class='block text-sm font-medium leading-6'>{{label}}<span class="text-red-600">{{#if star}}*{{/if}}</span></label>
-<div class='mt-1'>
+
+<div class="w-full">
+    {{#if label}}
+        <label for='{{id}}' class='block text-sm font-medium leading-6 mb-1'>{{label}}<span class="text-red-600">{{#if
+            star}}*{{/if}}</span></label>
+    {{/if}}
     <input
         id='{{id}}'
         name='{{name}}'
@@ -16,14 +20,14 @@
 
 {{#if numeric}}
     <script>
-        document.getElementById('{{id}}').addEventListener("keydown", (event) => {
+        document.getElementById('{{id}}').addEventListener('keydown', (event) => {
             // Allow backspace, delete, escape, arrow keys
-            const allowedKeys = [8, 9, 27, 37, 38, 39, 40];
+            const allowedKeys = [8, 9, 27, 37, 38, 39, 40]
 
             if (!event.key.match(/\d/) && !allowedKeys.includes(event.keyCode)) {
-                event.preventDefault();
+                event.preventDefault()
             }
-        });
+        })
     </script>
 {{/if}}
 

@@ -30,9 +30,13 @@
         <h1 class='text-4xl font-semibold'>Recent Articles</h1>
 
         <div class='flex flex-col gap-8'>
-            {{#each articles}}
-                {{> article-preview this }}
-            {{/each}}
+            {{#if articles.length}}
+                {{#each articles}}
+                    {{> article-preview this }}
+                {{/each}}
+            {{else}}
+                <p class="italic text-sm">no recent articles</p>
+            {{/if}}
         </div>
     </div>
 

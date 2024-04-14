@@ -2,6 +2,7 @@ import express from 'express'
 import { guardPage } from '../../middleware/guardPage'
 import blogPages from './blog'
 import { getArticles } from '../../db/repositories/articleRepository'
+import adminPanel from './admin-panel'
 
 const router = express.Router()
 
@@ -19,10 +20,8 @@ router.get('/sign-up', (req, res) => {
     res.render('sign-up')
 })
 
-router.get('/admin-panel', guardPage(true), (req, res) => {
-    res.render('admin-panel')
-})
-
+// Use the adminPanel router for all /admin-panel routes
+router.use('/admin-panel', guardPage(true), adminPanel)
 // Use the blogPages router for all /blog routes
 router.use('/blog', blogPages)
 

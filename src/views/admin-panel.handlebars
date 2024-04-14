@@ -1,1 +1,52 @@
-<h1 class='text-4xl font-semibold'>Admin-Panel</h1>
+<script src='/searchUsers.js'></script>
+<script src='/deleteUser.js'></script>
+
+<div class='flex w-full flex-col gap-8'>
+    <h1 class='text-4xl font-semibold'>Admin-Panel</h1>
+
+    <div class='flex flex-col lg:flex-row gap-4 items-start'>
+
+        <section class='flex w-full flex-col gap-4 rounded-lg border bg-background p-3 md:p-4'>
+            <h2 class='text-xl font-semibold'>User Moderation</h2>
+
+            <form id="search-users-form" class="w-full flex gap-2 flex-wrap">
+                <div class="flex-grow">
+                    {{> input id='usersearch' name='usersearch' type='text' placeholder='Search username or email' }}
+                </div>
+
+                <button
+                    type="submit"
+                    class='ml-auto inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                >
+                    Search
+                </button>
+            </form>
+
+            <div class='flex flex-col gap-3'>
+                {{#if users.length}}
+                    {{#each users}}
+                        {{> user-mod-view this }}
+                    {{/each}}
+                {{else}}
+                    <p class="italic text-sm">no users found</p>
+                {{/if}}
+            </div>
+        </section>
+
+        <section class='flex w-full flex-col gap-4 rounded-lg border bg-background p-3 md:p-4'>
+            <h2 class='text-xl font-semibold'>Article Moderation</h2>
+            <h2 class='text-md font-semibold'>Recent Articles (24h):</h2>
+
+            <div class='flex flex-col gap-8'>
+                {{#if articles.length}}
+                    {{#each articles}}
+                        {{> article-mod-view this }}
+                    {{/each}}
+                {{else}}
+                    <p class="italic text-sm">no articles in the last 24h</p>
+                {{/if}}
+            </div>
+        </section>
+
+    </div>
+</div>

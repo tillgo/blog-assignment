@@ -1,0 +1,26 @@
+<div class='flex flex-wrap w-full rounded-lg border p-2 gap-1 justify-between'>
+    <div class="flex flex-col flex-grow gap-0.5">
+        <h2 class='text-sm font-bold'>
+            @{{username}}
+        </h2>
+        <div class="flex text-sm items-center">{{> icons/email }}: {{email}}</div>
+        <div class="flex text-sm items-center">{{> icons/shield }}: {{#if isAdmin}}Admin{{else}}User{{/if}}</div>
+        <div class="flex text-sm items-center">{{> icons/clock }}: {{formatDate createdAt}}</div>
+    </div>
+
+    <div class="ml-auto">
+        <a
+            href="/admin-panel/users/{{_id}}/edit"
+            class='h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
+        >
+            Edit User{{> icons/edit size='4' }}
+        </a>
+        <button
+            type='button'
+            onclick="handleDeleteUser('{{_id}}')"
+            class='h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90'
+        >
+            Delete User
+        </button>
+    </div>
+</div>

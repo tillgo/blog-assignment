@@ -1,0 +1,58 @@
+<article
+    class='grid h-auto w-full grid-cols-3 grid-rows-[1fr_auto] gap-2 sm:min-h-36 sm:grid-rows-1 sm:gap-4'
+>
+    <a href='/blog/{{_id}}' class='col-span-3 h-full w-full sm:col-span-1'>
+        {{#if image}}
+            <img
+                class='h-full max-h-48 w-full rounded-lg object-cover sm:max-h-36'
+                src='{{image}}'
+                alt='Featured Image'
+                title='Featured Image'
+            />
+        {{else}}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class='p-4 h-full max-h-48 w-full bg-accent rounded-lg object-cover sm:max-h-36'>
+                <rect width="18" height="18" x="3" y="3" rx="2" ry="2" />
+                <circle cx="9" cy="9" r="2" />
+                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21" />
+            </svg>
+        {{/if}}
+    </a>
+    <div class='col-span-3 flex w-full flex-col gap-0.5 sm:col-span-2'>
+        <div class='flex items-center gap-1 flex-wrap'>
+            <a href='/admin-panel?usersearch={{author.username}}' class='text-sm font-bold'>@{{author.username}}</a>
+            <span class='font-bold'>·</span>
+            <div class='text-sm text-primary/80'>{{toXMagnitudeAgo createdAt}}</div>
+            {{#if timeToRead}}
+                <span class='font-bold'>·</span>
+                <div class='text-sm text-primary/80'>{{timeToRead}} min read</div>
+            {{/if}}
+            {{#if tags.length}}
+                <span class='font-bold'>·</span>
+                <div class="flex flex-wrap gap-1">
+                    {{#each tags}}
+                        {{> tag name=this }}
+                    {{/each}}
+                </div>
+            {{/if}}
+        </div>
+        <a href='/blog/{{_id}}' class='line-clamp-4 text-xl font-bold sm:line-clamp-2'>{{title}}
+        </a>
+        <div class="flex justify-end gap-2 flex-wrap w-full mt-1">
+            <a
+                href="/blog/{{_id}}/edit"
+                class='h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
+            >
+                Edit Article{{> icons/edit size='4' }}
+            </a>
+            <button
+                type='button'
+                onclick="handleDeleteArticle('{{_id}}', '/admin-panel')"
+                class='h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-destructive text-destructive-foreground hover:bg-destructive/90'
+            >
+                Delete Article
+            </button>
+        </div>
+    </div>
+</article>
