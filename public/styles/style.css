@@ -2106,6 +2106,10 @@ body {
   background-color: hsl(var(--primary) / 0.9);
 }
 
+.hover\:bg-background:hover {
+  background-color: hsl(var(--background));
+}
+
 .hover\:text-accent-foreground:hover {
   color: hsl(var(--accent-foreground));
 }
@@ -2229,6 +2233,10 @@ body {
 
 :is(.dark .dark\:hidden) {
   display: none;
+}
+
+:is(.dark .dark\:bg-accent) {
+  background-color: hsl(var(--accent));
 }
 
 @media (min-width: 640px) {
