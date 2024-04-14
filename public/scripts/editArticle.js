@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const image = form.querySelector('#image').value || undefined
         const authorId = form.querySelector('#authorId').value
 
-        const content = quill.root.innerHTML
+        const content = quill.root.innerHTML === '<p><br></p>' ? undefined : quill.root.innerHTML
 
         fetch(`/api/articles${isEdit ? `/${articleId}` : ''}`, {
             method: isEdit ? 'PUT' : 'POST',

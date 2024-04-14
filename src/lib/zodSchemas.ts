@@ -37,7 +37,7 @@ export const SetArticleSchema = z.object({
         }),
     timeToRead: z.number().min(1, 'Time to read must be at least 1 minute').optional(),
     image: z.string().max(500, "Image-URL can't be longer than 500 characters").optional(),
-    body: z.string(),
+    body: z.string({ required_error: 'Article must have content' }),
 })
 export type SetArticleData = z.infer<typeof SetArticleSchema>
 
