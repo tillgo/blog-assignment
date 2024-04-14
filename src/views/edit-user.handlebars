@@ -1,22 +1,31 @@
-<script src="/updateUser.js"></script>
+<script src="/editUser.js"></script>
 
 <div class='flex w-full flex-col gap-4'>
     <h1 class='text-4xl font-semibold'>Admin-Panel</h1>
 
     <form id="user-edit-form" class='mx-auto flex w-full max-w-sm flex-col rounded-lg border bg-background p-4 gap-3'>
-        <h2 class='text-xl font-semibold'>Edit User - @{{user.username}}</h2>
+        <h2 class='text-xl font-semibold'>{{#if isEdit}}Edit User - @{{user.username}}{{else}}Create new User{{/if}}</h2>
 
-        <input type="hidden" id="id" name="id" value="{{user._id}}">
+        <input type="hidden" id="id" name="id" value="{{user._id}}" />
+        <input type="hidden" id="isEdit" name="isEdit" value="{{isEdit}}" />
 
         {{> input id='username' name='username' type='text' value=user.username label='Username' required=true value=user.username star=true }}
         {{> input id='email' name='email' type='email' value=user.email label='Email' required=true value=user.email star=true }}
-        {{> input id='password' name='password' type='password' label='Password' placeholder='Leave blank to keep password' }}
+        {{#if isEdit}}
+            {{> input id='password' name='password' type='password' label='Password' placeholder='Leave empty to keep the same' }}
+        {{else}}
+            {{> input id='password' name='password' type='password' label='Password' required=true }}
+        {{/if}}
 
         <button
             type="submit"
             class='inline-flex h-10 w-full items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
         >
-            Update User
+            {{#if isEdit}}
+                Update User
+            {{else}}
+                Create User
+            {{/if}}
         </button>
     </form>
 </div>

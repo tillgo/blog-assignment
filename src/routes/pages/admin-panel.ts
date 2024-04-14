@@ -14,6 +14,10 @@ router.get('/', async (req, res) => {
     res.render('admin-panel', { articles, users })
 })
 
+router.get('/users/new', async (req, res) => {
+    res.render('edit-user')
+})
+
 router.get('/users/:userId/edit', async (req, res) => {
     const userId = req.params.userId
     const user = await getUserById(userId)
@@ -22,7 +26,7 @@ router.get('/users/:userId/edit', async (req, res) => {
         return res.redirect('/admin-panel')
     }
 
-    res.render('edit-user', { user })
+    res.render('edit-user', { user, isEdit: true })
 })
 
 export default router

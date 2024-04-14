@@ -1,14 +1,39 @@
 import express from 'express'
 import { guardPage } from '../../middleware/guardPage'
-import { deleteUser, getUserById, updateUser } from '../../db/repositories/userRepository'
+import {
+    createUser,
+    deleteUser,
+    getUserByEmail,
+    getUserById,
+    updateUser,
+} from '../../db/repositories/userRepository'
 import { validate } from '../../middleware/zodValidate'
-import { UpdateUserData, UpdateUserSchema } from '../../lib/zodSchemas'
+import {
+    CreateUserAsAdminData,
+    CreateUserAsAdminSchema,
+    UpdateUserData,
+    UpdateUserSchema,
+} from '../../lib/zodSchemas'
 import { User } from '../../db/models/user'
 import bcrypt from 'bcrypt'
 import { BadRequestProblem } from '../../lib/errors'
 import { deleteArticlesForUser } from '../../db/repositories/articleRepository'
 
 const router = express.Router()
+
+router.post('/', guardPage(true), validate({ body: CreateUserAsAdminSchema }), async (req, res) => {
+    const data = req.body as CreateUserAsAdminData
+
+    const existingUser = await getUserByEmail(data.email)
+    if (existingUser) {
+        throw new BadRequestProblem('This email is already in use')
+    }
+
+    const passwordHash = bcrypt.hashSync(data.password, 10)
+    const newUser = await createUser({ username: data.username, email: data.email, passwordHash })
+
+    res.status(201).json({ user: newUser })
+})
 
 // PUT /api/users/:userId - Update a user
 router.put('/:userId', guardPage(true), validate({ body: UpdateUserSchema }), async (req, res) => {

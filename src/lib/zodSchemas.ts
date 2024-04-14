@@ -67,3 +67,17 @@ export const UpdateUserSchema = z.object({
         .optional(),
 })
 export type UpdateUserData = z.infer<typeof UpdateUserSchema>
+
+export const CreateUserAsAdminSchema = z.object({
+    username: z
+        .string()
+        .max(20, "Username can't be longer than 20 characters")
+        .min(3, 'Username must be at least 3 characters long')
+        .regex(/^[a-zA-Z0-9_]*$/, 'Username can only contain letters, numbers, and underscores'),
+    email: z.string().email('Invalid email address'),
+    password: z
+        .string()
+        .max(64, "Password can't be longer than 50 characters")
+        .min(6, 'Password must be at least 6 characters long'),
+})
+export type CreateUserAsAdminData = z.infer<typeof CreateUserAsAdminSchema>

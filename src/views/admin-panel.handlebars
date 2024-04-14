@@ -7,7 +7,16 @@
     <div class='flex flex-col lg:flex-row gap-4 items-start'>
 
         <section class='flex w-full flex-col gap-4 rounded-lg border bg-background p-3 md:p-4'>
-            <h2 class='text-xl font-semibold'>User Moderation</h2>
+            <div class="flex flex-wrap justify-between items-center gap-2">
+                <h2 class='text-xl font-semibold'>User Moderation</h2>
+                <a
+                    href="/admin-panel/users/new"
+                    class='ml-auto h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                >
+                    Create User{{> icons/plus }}
+                </a>
+            </div>
+
 
             <form id="search-users-form" class="w-full flex gap-2 flex-wrap">
                 <div class="flex-grow">

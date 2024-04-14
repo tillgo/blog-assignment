@@ -4,13 +4,15 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const form = document.getElementById('user-edit-form')
 
+        const isEdit = form.querySelector('#isEdit').value === 'true'
+
         const id = form.querySelector('#id').value
         const username = form.querySelector('#username').value
         const email = form.querySelector('#email').value
         const password = form.querySelector('#password').value || undefined
 
-        fetch(`/api/users/${id}`, {
-            method: 'PUT',
+        fetch(`/api/users/${isEdit ? `/${id}` : ''}`, {
+            method: isEdit ? 'PUT' : 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
