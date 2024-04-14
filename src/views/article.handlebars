@@ -57,26 +57,30 @@
     </article>
 
     <section class='flex flex-col gap-4'>
-        <h2 class='text-2xl font-bold'>{{article.comments.length}} Comments</h2>
+        <h2 class='text-2xl font-bold'>{{article.comments.length}} Comment{{#if (eq article.comments.length 1)}}{{else}}s{{/if}}</h2>
 
-        <form id="comment-form" class='flex flex-col space-y-2'>
-            <input type="hidden" name="articleId" id="articleId" value="{{article._id}}">
-            <textarea
-                id="comment-input"
-                name='comment-input'
-                type='text'
-                placeholder="Add a comment..."
-                required
-                rows='2'
-                class='flex w-full rounded-md border border-input bg-background px-3 py-2 text-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-            ></textarea>
-            <button
-                type='submit'
-                class='ml-auto inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
-            >
-                Comment
-            </button>
-        </form>
+        {{#if userId}}
+            <form id="comment-form" class='flex flex-col space-y-2'>
+                <input type="hidden" name="articleId" id="articleId" value="{{article._id}}">
+                <textarea
+                    id="comment-input"
+                    name='comment-input'
+                    type='text'
+                    placeholder="Add a comment..."
+                    required
+                    rows='2'
+                    class='flex w-full rounded-md border border-input bg-background px-3 py-2 text-md ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                ></textarea>
+                <button
+                    type='submit'
+                    class='ml-auto inline-flex h-10 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground ring-offset-background transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+                >
+                    Comment
+                </button>
+            </form>
+        {{else}}
+            <div class="italic mb-2">To write a comment, you have to <a href="/sign-in?redirectTo={{uriEscape activePath}}" class="underline text-blue-500">Sign-In</a> first.</div>
+        {{/if}}
 
         <div class='space-y-6'>
             {{#each article.comments}}
