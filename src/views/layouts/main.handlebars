@@ -96,12 +96,10 @@
                                     href='/blog'
                                     class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog" " underline "}}'
                                 >Blog</a>
-                                {{#if userId}}
-                                    <a
-                                        href='/blog/new'
-                                        class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog/new" " underline "}}'
-                                    >Write</a>
-                                {{/if}}
+                                <a
+                                    href='/blog/new'
+                                    class='-mx-2 block rounded-lg p-2 text-md font-semibold leading-6 hover:bg-accent {{styleActive activePath "/blog/new" " underline "}}'
+                                >Write</a>
                                 {{#if isAdmin}}
                                     <a
                                         href='/admin-panel'
