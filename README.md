@@ -6,7 +6,7 @@ Currently, it is themed about sharing the journey towards a life goal, but it ca
 I built it as a part of a Node.js + Express college assignment. It uses TypeScript for the backend, 
 Handlebars as a templating engine and MongoDB as a database.
 
-Currently hosted here: https://blog-ception-639890926140.herokuapp.com/ (might not be available at all times)
+Currently hosted here: https://share-the-grind-930424ee02cd.herokuapp.com (might not be available at all times)
 
 **Features:**
 - User registration / login
