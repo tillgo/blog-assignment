@@ -28,3 +28,6 @@ Currently hosted here: https://blog-ception-639890926140.herokuapp.com/ (might n
 2. Create a `.env` file. You can copy the `.env.example` file and fill in the values.
 3. Run `npm run dev` to start the server in development mode.
 4. Open `http://localhost:3000` in your browser.
+
+After you registered an account, you can make yourself an admin by changing the `isAdmin` 
+field in the database to `true` for your user.
