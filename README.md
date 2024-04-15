@@ -21,6 +21,7 @@ Currently hosted here: https://blog-ception-639890926140.herokuapp.com/ (might n
 
 **Prerequisites:**
 - Node.js installed
+- MongoDB running somewhere (locally or MongoDB Atlas free tier)
 
 **Steps:**
 1. Run `npm install`
