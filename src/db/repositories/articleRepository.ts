@@ -62,13 +62,15 @@ export const getArticles = async (
 ): Promise<Article[]> => {
     const filterQuery = {} as FilterQuery<ArticleDocument>
 
-    if (filter) {
-        const search = new RegExp(escapeForRegex(filter?.search), 'i')
+    if (filter?.tag) {
         const tag = new RegExp(escapeForRegex(filter?.tag), 'i')
-
-        filterQuery.title = { $regex: search }
         filterQuery.tags = { $regex: tag }
     }
+    if (filter?.search) {
+        const search = new RegExp(escapeForRegex(filter?.search), 'i')
+        filterQuery.title = { $regex: search }
+    }
+
     if (possibleAuthors) {
         filterQuery.authorId = { $in: possibleAuthors.map((author) => author._id) }
     }

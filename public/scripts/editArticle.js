@@ -48,20 +48,23 @@ document.addEventListener('DOMContentLoaded', function () {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                title,
-                subtitle,
-                tags: tagsString ? tagsString.split(',').map((tag) => tag.trim()) : undefined,
-                timeToRead,
-                image,
-                body: content,
-                authorId,
-            }),
+            body: JSON.stringify(
+                {
+                    title,
+                    subtitle,
+                    tags: tagsString ? tagsString.split(',').map((tag) => tag.trim()) : [],
+                    timeToRead,
+                    image,
+                    body: content,
+                    authorId,
+                },
+                function (k, v) {
+                    return v === undefined ? null : v
+                }
+            ),
         }).then(async (res) => {
             if (res.ok) {
                 const data = await res.json()
-                form.reset()
-                quill.root.innerHTML = '<p><br></p>'
 
                 window.location = `/blog/${data._id}`
             } else {

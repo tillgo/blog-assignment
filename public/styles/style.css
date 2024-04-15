@@ -1430,10 +1430,6 @@ body {
   top: 100vh;
 }
 
-.top-10 {
-  top: 2.5rem;
-}
-
 .z-10 {
   z-index: 10;
 }
@@ -2391,10 +2387,6 @@ body {
 @media (min-width: 1024px) {
   .lg\:sticky {
     position: sticky;
-  }
-
-  .lg\:top-10 {
-    top: 2.5rem;
   }
 
   .lg\:top-8 {
