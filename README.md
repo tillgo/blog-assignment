@@ -1,6 +1,8 @@
 # Blog Publishing Platform
 
 This project is a Medium like, simple publishing platform, where users can read and write articles.
+Currently, it is themed about sharing the journey towards a life goal, but it can be easily changed to any other theme.
+
 I built it as a part of a Node.js + Express college assignment. It uses TypeScript for the backend, 
 Handlebars as a templating engine and MongoDB as a database.
 
