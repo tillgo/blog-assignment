@@ -17,7 +17,10 @@ import {
 import { User } from '../../db/models/user'
 import bcrypt from 'bcrypt'
 import { BadRequestProblem } from '../../lib/errors'
-import { deleteArticlesForUser } from '../../db/repositories/articleRepository'
+import {
+    deleteArticlesForUser,
+    deleteCommentsForUser,
+} from '../../db/repositories/articleRepository'
 
 const router = express.Router()
 
@@ -66,6 +69,7 @@ router.delete('/:userId', guardPage(true), async (req, res) => {
     }
 
     await deleteArticlesForUser(userId)
+    await deleteCommentsForUser(userId)
     await deleteUser(userId)
 
     res.status(204).json({ message: 'User deleted' })

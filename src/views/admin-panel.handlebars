@@ -1,4 +1,4 @@
-<script src='/searchUsers.js'></script>
+<script src='/searchAdminPanel.js'></script>
 <script src='/deleteUser.js'></script>
 
 <div class='flex w-full flex-col gap-8'>
@@ -44,7 +44,17 @@
 
         <section class='flex w-full flex-col gap-4 rounded-lg border bg-background p-3 md:p-4'>
             <h2 class='text-xl font-semibold'>Article Moderation</h2>
-            <h2 class='text-md font-semibold'>Recent Articles (24h):</h2>
+            <div class="flex flex-wrap gap-4">
+                <h2 id="admin-recent-label" class='text-md font-semibold'>Recent Articles (24h):</h2>
+
+                <button
+                    id="admin-article-filter"
+                    onclick="handleToggleArticlesView()"
+                    class='h-6 px-2 gap-1 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50'
+                >
+                    Show Recent 5
+                </button>
+            </div>
 
             <div class='flex flex-col gap-8'>
                 {{#if articles.length}}

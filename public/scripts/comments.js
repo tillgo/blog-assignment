@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
             body: JSON.stringify({ body }),
         }).then(async (res) => {
             if (res.ok) {
+                form.reset()
                 window.location.reload()
             } else {
                 await handleError(res)

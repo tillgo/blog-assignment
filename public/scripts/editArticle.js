@@ -59,6 +59,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }).then(async (res) => {
             if (res.ok) {
                 const data = await res.json()
+                form.reset()
+                quill.root.innerHTML = '<p><br></p>'
+
                 window.location = `/blog/${data._id}`
             } else {
                 await handleError(res)

@@ -1,7 +1,16 @@
 <script src="/editUser.js"></script>
 
-<div class='flex w-full flex-col gap-4'>
-    <h1 class='text-4xl font-semibold'>Admin-Panel</h1>
+<div class='flex w-full flex-col gap-8'>
+    <div class="flex flex-wrap gap-2 items-center">
+        <h1 class='text-4xl font-semibold'>Admin-Panel</h1>
+        <button
+            onclick="window.history.back()"
+            class='px-4 py-2 h-10 inline-flex items-center justify-center whitespace-nowrap rounded-md border border-input bg-background text-sm font-medium ring-offset-background transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2'
+        >
+            Go back
+        </button>
+    </div>
+
 
     <form id="user-edit-form" class='mx-auto flex w-full max-w-sm flex-col rounded-lg border bg-background p-4 gap-3'>
         <h2 class='text-xl font-semibold'>{{#if isEdit}}Edit User - @{{user.username}}{{else}}Create new User{{/if}}</h2>

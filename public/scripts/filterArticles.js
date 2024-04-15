@@ -9,10 +9,3 @@ document.addEventListener('DOMContentLoaded', function () {
     form.querySelector('#author').value = author || ''
     form.querySelector('#tag').value = tag || ''
 })
-
-const handleFilterTag = (tag) => {
-    const url = new URL(window.location)
-    url.searchParams.set('tag', encodeURIComponent(tag))
-
-    window.location = url
-}

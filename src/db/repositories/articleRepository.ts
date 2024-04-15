@@ -94,6 +94,12 @@ export const deleteArticlesForUser = async (userId: string) => {
     return await getArticleModel().deleteMany({ authorId: userId }).exec()
 }
 
+export const deleteCommentsForUser = async (userId: string) => {
+    return await getArticleModel()
+        .updateMany({ 'comments.authorId': userId }, { $pull: { comments: { authorId: userId } } })
+        .exec()
+}
+
 /**
  * Update an article
  *

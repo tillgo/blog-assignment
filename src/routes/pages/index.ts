@@ -6,16 +6,19 @@ import adminPanel from './admin-panel'
 
 const router = express.Router()
 
+// GET / - render home page
 router.get('/', async (req, res) => {
     const articles = await getArticles(10)
 
     res.render('home', { articles })
 })
 
+// GET /sign-in - render sign-in page
 router.get('/sign-in', (req, res) => {
     res.render('sign-in')
 })
 
+// GET /sign-up - render sign-up page
 router.get('/sign-up', (req, res) => {
     res.render('sign-up')
 })
