@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // register the submit event for editing a user
     document.getElementById('user-edit-form').addEventListener('submit', async (event) => {
         event.preventDefault()
 

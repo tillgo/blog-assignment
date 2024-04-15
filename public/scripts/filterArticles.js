@@ -1,4 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+    // load all query params and set them in the form
+
     const url = new URL(window.location)
     const search = url.searchParams.get('search')
     const author = url.searchParams.get('author')

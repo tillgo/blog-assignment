@@ -1,3 +1,9 @@
+/**
+ * Handle delete article
+ *
+ * @param articleId - the id of the article
+ * @param redirect - the page to redirect to after deleting the article
+ */
 const handleDeleteArticle = (articleId, redirect = '/blog') => {
     fetch(`/api/articles/${articleId}`, {
         method: 'DELETE',

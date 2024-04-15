@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     })
 
+    // register the submit event for creating a new article
     document.getElementById('new-article-form').addEventListener('submit', async (event) => {
         event.preventDefault()
 

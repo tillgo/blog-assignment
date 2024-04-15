@@ -1,5 +1,8 @@
 let timeout = null
 
+/**
+ * Closes the alert snack
+ */
 const handleCloseAlert = () => {
     if (timeout) {
         clearTimeout(timeout)
@@ -10,6 +13,11 @@ const handleCloseAlert = () => {
     alert.classList.add('hidden')
 }
 
+/**
+ * Handles the error response from the server. This should be called if response.ok is false.
+ *
+ * @param response - the response from the server
+ */
 const handleError = async (response) => {
     if (timeout) {
         clearTimeout(timeout)

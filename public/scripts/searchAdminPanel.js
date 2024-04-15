@@ -1,5 +1,6 @@
 let is24h = true
 
+// load the query params and set them in the form + update labels
 document.addEventListener('DOMContentLoaded', function () {
     const url = new URL(window.location)
     const userSearch = url.searchParams.get('usersearch')
@@ -18,6 +19,9 @@ document.addEventListener('DOMContentLoaded', function () {
     form.querySelector('#usersearch').value = userSearch || ''
 })
 
+/**
+ * Toggle between loading past 24h articles and recent 5 articles
+ */
 const handleToggleArticlesView = () => {
     const button = document.getElementById('admin-article-filter')
     const label = document.getElementById('admin-recent-label')

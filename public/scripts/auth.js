@@ -1,9 +1,15 @@
+/**
+ * Logout the user
+ */
 const handleLogout = () => {
     fetch('/api/auth/logout', { method: 'DELETE' }).then(() => {
         window.location.reload()
     })
 }
 
+/**
+ * Sign in the user
+ */
 const handleSignIn = () => {
     const form = document.getElementById('sign-in-form')
     const email = form.querySelector('#email').value
@@ -20,6 +26,9 @@ const handleSignIn = () => {
     })
 }
 
+/**
+ * Sign up the user
+ */
 const handleSignUp = () => {
     const form = document.getElementById('sign-up-form')
     const email = form.querySelector('#email').value
@@ -37,6 +46,11 @@ const handleSignUp = () => {
     })
 }
 
+/**
+ * Handle response from the server after sign in/up
+ *
+ * @param res - the response from the server
+ */
 const handleResponse = async (res) => {
     if (res.ok) {
         // Redirect to the page that the user was trying to access

@@ -1,3 +1,6 @@
+/**
+ * Theme switcher
+ */
 const handleThemeToggle = () => {
     const currentTheme = getTheme()
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark'
@@ -7,6 +10,11 @@ const handleThemeToggle = () => {
     document.body.classList.add(newTheme)
 }
 
+/**
+ * Get the current theme from local storage or system preference
+ *
+ * @returns {string|string}
+ */
 const getTheme = () => {
     const systemPreference = window.matchMedia('(prefers-color-scheme: dark)').matches
         ? 'dark'

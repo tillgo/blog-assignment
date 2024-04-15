@@ -1,3 +1,9 @@
+/**
+ * Handle toggle of opening and closing the edit comment form
+ *
+ * @param commentId - the id of the comment
+ * @param body - the body of the comment
+ */
 const handleEditToggle = (commentId, body) => {
     const editCommentContainer = document.getElementById(`edit-comment-${commentId}`)
     const comment = document.getElementById(`comment-${commentId}`)
@@ -8,6 +14,11 @@ const handleEditToggle = (commentId, body) => {
     editCommentInput.value = body
 }
 
+/**
+ * Handle editing of the comment
+ *
+ * @param commentId - the id of the comment
+ */
 const handleEditComment = (commentId) => {
     const editCommentInput = document.getElementById(`edit-comment-input-${commentId}`)
     const body = editCommentInput.value
@@ -27,6 +38,11 @@ const handleEditComment = (commentId) => {
     })
 }
 
+/**
+ * Handle deleting the comment
+ *
+ * @param commentId - the id of the comment
+ */
 const handleDeleteComment = (commentId) => {
     fetch(`/api/comments/${commentId}`, {
         method: 'DELETE',
@@ -39,6 +55,7 @@ const handleDeleteComment = (commentId) => {
     })
 }
 
+// after form is loaded, register the submit event for writing a comment
 document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('comment-form').addEventListener('submit', async (event) => {
         event.preventDefault()
